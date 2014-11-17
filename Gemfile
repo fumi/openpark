@@ -12,8 +12,12 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'knockoutjs-rails'
 gem 'jquery-rails'
 gem 'leaflet-rails'
+gem 'leaflet-markercluster-rails'
 
-gem 'tripod'
+gem 'linkeddata'
+gem 'spira'
+gem 'sparql'
+gem 'sparql-client'
 gem 'rack-linkeddata'
 
 gem 'execjs'
