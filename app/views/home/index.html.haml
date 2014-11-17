@@ -1,4 +1,6 @@
-%h1 公園許可
+- content_for :head do
+  %title Open Park
 
-//= map(:center => { :latlng => [35.338855, 139.625028], :zoom => 14 })
-= map(:center => { :latlng => [35.34, 139.62], :zoom => 13 })
+%h1 Open Park
+
+= map_to_leaflet(:center => { :latlng => [35.3553, 139.625], :zoom => 13 }, :markers => @markers, :cluster => true )
