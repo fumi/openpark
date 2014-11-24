@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require knockout
 //= require bootstrap-sprockets
 //= require leaflet
 //= require leaflet.markercluster
+//= require galleria/galleria
+//= require galleria/galleria.classic
+//= require galleria/galleria.flickr
 //= require_tree .
