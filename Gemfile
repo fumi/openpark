@@ -11,9 +11,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'knockoutjs-rails'
 gem 'jquery-rails'
+
+# Leaflet
 gem 'leaflet-rails'
 gem 'leaflet-markercluster-rails'
 
+# Linked Data & RDF
 gem 'linkeddata'
 gem 'spira'
 gem 'sparql'
