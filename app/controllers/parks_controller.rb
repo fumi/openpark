@@ -1,15 +1,16 @@
 class ParksController < ApplicationController
   def view
     @park = {
-      uri: "http://kanazawa.openpark.jp/parks/" + params[:id]
+      uri: "http://yokohama.openpark.jp/parks/" + params[:id]
     }
     client = SPARQL::Client.new("http://localhost:8890/sparql")
     query = """PREFIX geo: <#{RDF::GEO.to_s}>
 PREFIX rdfs: <#{RDF::RDFS.to_s}>
 PREFIX schema: <#{RDF::SCHEMA.to_s}>
 PREFIX dcterms: <#{RDF::DC.to_s}>
+PREFIX openpark: <http://openpark.jp/ns/openpark#>
 
-SELECT ?label ?lat ?long ?description
+SELECT ?label ?lat ?long ?description ?flickrID
 WHERE {
   <#{@park[:uri]}> a schema:Park ;
     rdfs:label ?label ;
@@ -17,6 +18,9 @@ WHERE {
     geo:long ?long .
   OPTIONAL {
     <#{@park[:uri]}> dcterms:description ?description .
+  }
+  OPTIONAL {
+    <#{@park[:uri]}> openpark:flickrID ?flickrID .
   }
 }
     """
@@ -30,6 +34,7 @@ WHERE {
       @park[:lat] = solution[:lat]
       @park[:long] = solution[:long]
       @park[:description] = solution[:description]
+      @park[:flickrID] = solution[:flickrID]
     end
   end
 end

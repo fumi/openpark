@@ -16,14 +16,13 @@
 
 = map_to_leaflet(:center => { :latlng => [@park[:lat], @park[:long]], :zoom => 16 }, :markers => @markers, :cluster => true )
 
-#galleria
-:javascript
-  Galleria.loadTheme('/assets/galleria/galleria.classic.min.js')
-  Galleria.run('#galleria', {
-      flickr: 'set:72157649027533099',
-  });
-//      flickr: 'search:galleria',
-  
+= if @park[:flickrID]  
+  #galleria
+  :javascript
+    Galleria.loadTheme('/assets/galleria/galleria.classic.min.js')
+    Galleria.run('#galleria', {
+        flickr: 'set:#{@park[:flickrID]}',
+    });
   
 
 %h3 基本データ
