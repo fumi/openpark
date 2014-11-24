@@ -18,8 +18,9 @@ WHERE {
 
     @markers = []
     results.each do |solution|
+      link = solution[:park].to_s.gsub(/http:\/\/.*?\//, '')
       @markers << { :latlng => [solution[:lat].to_s.to_f, solution[:long].to_s.to_f],
-        :popup => "<a href=\"#{solution[:park].to_s}\">#{solution[:label].to_s}</a>" }
+        :popup => "<a href=\"#{link}\">#{solution[:label].to_s}</a>" }
 #        :popup => "#{solution[:label].to_s}" }
     end
   end
