@@ -1,0 +1,40 @@
+- content_for :head do
+  %title= "#{@park[:label]} - Open Park"
+  :css
+    #map {
+      width: 800px;
+      height: 200px;
+    }
+    #galleria {
+      width: 800px;
+      height: 400px;
+      background: #000;
+    }
+
+%h1= @park[:label]
+%h2= @park[:uri]
+
+= map_to_leaflet(:center => { :latlng => [@park[:lat], @park[:long]], :zoom => 16 }, :markers => @markers, :cluster => true )
+
+#galleria
+:javascript
+  Galleria.loadTheme('/assets/galleria/galleria.classic.min.js')
+  Galleria.run('#galleria', {
+      flickr: 'set:72157649027533099',
+  });
+//      flickr: 'search:galleria',
+  
+  
+
+%h3 基本データ
+%table
+  %tbody
+    %tr
+      %td 緯度
+      %td= @park[:lat]
+    %tr
+      %td 経度
+      %td= @park[:long]
+    %tr
+      %td 説明
+      %td= @park[:description]
