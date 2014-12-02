@@ -21,8 +21,9 @@
   :javascript
     Galleria.loadTheme('/assets/galleria/galleria.classic.min.js')
     Galleria.run('#galleria', {
-        flickr: 'set:#{@park[:flickrID].to_s}'
+        flickr: 'tags:{@park[:label]}'
     });
+-#        flickr: 'set:#{@park[:flickrID].to_s}'
 
 %h3 基本データ
 %table

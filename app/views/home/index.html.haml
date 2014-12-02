@@ -1,6 +1,25 @@
-- content_for :head do
-  %title Open Park
-
-%h1 Open Park
-
-= map_to_leaflet(:center => { :latlng => [35.3553, 139.625], :zoom => 13 }, :markers => @markers, :cluster => true )
+.row
+  .col-md-12
+    %div{ :role => "tabpanel" }
+      %ul.nav.nav-pills.nav-justified{ :role => "tablist" }
+        %li.active{ :role => "presentation" }
+          %a{ :href => "#mapTab", :"aria-controls" => "map", :role => "tab", :"data-toggle" => "tab" } 地図から
+        %li{ :role => "presentation" }
+          %a{ :href => "#equipmentTab", :"aria-controls" => "map", :role => "tab", :"data-toggle" => "tab" } 遊具検索
+        %li{ :role => "presentation" }
+          %a{ :href => "#prohibitionTab", :"aria-controls" => "map", :role => "tab", :"data-toggle" => "tab" } 禁止検索
+      .tab-content
+        #mapTab.tab-pane.active{ :role => "tabpanel" }
+          = map_to_leaflet(:center => { :latlng => [35.355, 139.655], :zoom => 13 }, :markers => @markers, :cluster => true )
+        #equipmentTab.tab-pane{ :role => "tabpanel" }
+          %form{ :role => "form" }
+            .form-group
+              %label 種類
+              %select.form-control
+                %option 全て
+                %option 
+            %button.btn.btn-primary{ :type => "button" } 検索
+        #prohibitionTab.tab-pane{ :role => "tabpanel" }
+          %form{ :role => "form" }
+            .form-group
+              %label 
