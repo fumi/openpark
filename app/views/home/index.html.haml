@@ -12,10 +12,10 @@
         #mapTab.tab-pane.active{ :role => "tabpanel" }
           = map_to_leaflet(:center => { :latlng => [35.355, 139.655], :zoom => 13 }, :markers => @markers, :cluster => true )
         #equipmentTab.tab-pane{ :role => "tabpanel" }
-          %form{ :role => "form", :action => "/search", :method => "GET" }
+          %form{ :role => "form", :action => "/search" }
             .form-group
               %label 種類
-              %select#type.form-control{ :name => "type" }
+              %select#equipmentType.form-control{ :name => "equipmentType" }
                 %option 全て
                 %option 砂場
                 %option ブランコ
