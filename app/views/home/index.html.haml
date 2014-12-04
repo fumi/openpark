@@ -3,22 +3,51 @@
     %div{ :role => "tabpanel" }
       %ul.nav.nav-pills.nav-justified{ :role => "tablist" }
         %li.active{ :role => "presentation" }
-          %a{ :href => "#mapTab", :"aria-controls" => "map", :role => "tab", :"data-toggle" => "tab" } 地図から
+          %a{ :href => "#mapTab", :"aria-controls" => "map", :role => "tab", :"data-toggle" => "tab" } 地図から探す
         %li{ :role => "presentation" }
-          %a{ :href => "#equipmentTab", :"aria-controls" => "map", :role => "tab", :"data-toggle" => "tab" } 遊具検索
+          %a{ :href => "#equipmentTab", :"aria-controls" => "map", :role => "tab", :"data-toggle" => "tab" } 遊具から探す
         %li{ :role => "presentation" }
-          %a{ :href => "#prohibitionTab", :"aria-controls" => "map", :role => "tab", :"data-toggle" => "tab" } 禁止検索
+          %a{ :href => "#prohibitionTab", :"aria-controls" => "map", :role => "tab", :"data-toggle" => "tab" } 禁止から探す
       .tab-content
         #mapTab.tab-pane.active{ :role => "tabpanel" }
           = map_to_leaflet(:center => { :latlng => [35.355, 139.655], :zoom => 13 }, :markers => @markers, :cluster => true )
         #equipmentTab.tab-pane{ :role => "tabpanel" }
-          %form{ :role => "form" }
+          %form{ :role => "form", :action => "/search", :method => "GET" }
             .form-group
               %label 種類
-              %select.form-control
+              %select#type.form-control{ :name => "type" }
                 %option 全て
-                %option 
-            %button.btn.btn-primary{ :type => "button" } 検索
+                %option 砂場
+                %option ブランコ
+                %option 健康遊具
+                %option 鉄棒
+                %option すべり台
+                %option スプリング遊具
+                %option 鋼製複合遊具
+                %option その他遊具
+                %option コンクリート遊具
+                %option ジャングルジム
+                %option プレイスカルプチュア
+                %option クライム遊具
+                %option バスケットゴール
+                %option スウィング遊具
+                %option シーソー
+                %option 幼児用遊具樹脂製球体
+                %option 鋼製遊具
+                %option ローラーすべり台
+                %option 砂場テーブル
+                %option うんてい
+                %option ターザンロープ
+                %option 水遊場
+                %option ふみいたストレッチ
+                %option ぶらさがり
+                %option 木製遊具
+                %option 背伸ばしベンチ
+                %option コンクリート製複合遊具
+                %option ザイルクライム
+                %option ブランコマット
+                %option 遊具説明板
+            %button.btn.btn-primary{ :type => "submit" } 検索
         #prohibitionTab.tab-pane{ :role => "tabpanel" }
           %form{ :role => "form" }
             .form-group
