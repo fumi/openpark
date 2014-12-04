@@ -12,7 +12,6 @@
     }
 
 %h1= @park[:label]
-%h2= @park[:uri]
 
 = map_to_leaflet(:center => { :latlng => [@park[:lat], @park[:long]], :zoom => 16 }, :markers => @markers, :cluster => true )
 
