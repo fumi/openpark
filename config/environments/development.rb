@@ -40,5 +40,6 @@ Rails.application.configure do
   config.sass.cache = false
 
   config.sparql_endpoint = "http://localhost:8890/sparql"
+  config.hostname = "localhost:3000"
 
 end

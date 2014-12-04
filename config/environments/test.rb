@@ -38,5 +38,6 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.sparql_endpoint = "http://localhost:8890/sparql"
+  config.hostname = "localhost:3000"
 
 end
