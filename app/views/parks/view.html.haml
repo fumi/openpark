@@ -16,14 +16,12 @@
 
 = map_to_leaflet(:center => { :latlng => [@park[:lat], @park[:long]], :zoom => 16 }, :markers => @markers, :cluster => true )
 
-- if @park[:flickrID] && ! @park[:flickrID].to_s.empty?
-  #galleria
-  :javascript
-    Galleria.loadTheme('/assets/galleria/galleria.classic.min.js')
-    Galleria.run('#galleria', {
-        flickr: 'tags:{@park[:label]}'
-    });
--#        flickr: 'set:#{@park[:flickrID].to_s}'
+#galleria
+:javascript
+  Galleria.loadTheme('/assets/galleria/galleria.classic.min.js')
+  Galleria.run('#galleria', {
+      flickr: 'tags:{@park[:label]}'
+  });
 
 %h3 基本データ
 %table
