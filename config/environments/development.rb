@@ -39,4 +39,6 @@ Rails.application.configure do
   config.sass.preferred_syntax = :scss
   config.sass.cache = false
 
+  config.sparql_endpoint = "http://localhost:8890/sparql"
+
 end
