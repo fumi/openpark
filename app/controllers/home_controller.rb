@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class HomeController < ApplicationController
   def index
-    client = SPARQL::Client.new("http://localhost:8890/sparql")
+    client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
     query = """PREFIX geo: <#{RDF::GEO.to_s}>
 PREFIX rdfs: <#{RDF::RDFS.to_s}>
 PREFIX schema: <#{RDF::SCHEMA.to_s}>
