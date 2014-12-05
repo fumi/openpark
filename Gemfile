@@ -26,6 +26,10 @@ gem 'rack-linkeddata'
 gem 'execjs'
 gem 'therubyracer'
 
+group :production do
+  gem 'unicorn'
+end
+
 group :development do
   gem 'erb2haml'
   gem 'spring'
