@@ -2,8 +2,6 @@
 
 
 
-* System dependencies
-
 * Configuration
 
 * Database creation
