@@ -16,7 +16,7 @@ working_directory APP_PATH
 
 # listen on both a Unix domain socket and a TCP port,
 # we use a shorter backlog for quicker failover when busy
-listen "#{APP_PATH}/tmp/unicorn_sock"
+listen "#{APP_PATH}/tmp/unicorn.sock"
 #listen 32001, :tcp_nopush => true, :tcp_nodelay => true
 
 # nuke workers after 30 seconds instead of 60 seconds (the default)
