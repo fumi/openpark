@@ -2,8 +2,6 @@
 
 
 
-* Ruby version
-
 * System dependencies
 
 * Configuration
