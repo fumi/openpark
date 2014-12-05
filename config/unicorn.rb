@@ -10,22 +10,23 @@ worker_processes 5
 # Help ensure your application will always spawn in the symlinked
 # "current" directory that Capistrano sets up.
 # working_directory "" # available in 0.94.0+
+working_directory APP_PATH
 
 # listen on both a Unix domain socket and a TCP port,
 # we use a shorter backlog for quicker failover when busy
-listen "/tmp/.sock_unicorn_yokohama.openpark.jp"
-listen 32001, :tcp_nopush => true, :tcp_nodelay => true
+listen "#{APP_PATH}/tmp/unicorn_sock"
+#listen 32001, :tcp_nopush => true, :tcp_nodelay => true
 
 # nuke workers after 30 seconds instead of 60 seconds (the default)
 timeout 60
 
 # feel free to point this anywhere accessible on the filesystem
-pid "/var/run/unicorn/yokohama.openpark.jp.pid"
+pid "#{APP_PATH}/tmp/yokohama.openpark.jp.pid"
 
 # some applications/frameworks log to stderr or stdout, so prevent
 # them from going to /dev/null when daemonized here:
-stderr_path "/var/log/unicorn/yokohama.openpark.jp.stderr.log"
-stdout_path "/var/log/unicorn/yokohama.openpark.jp.stdout.log"
+stderr_path "#{APP_PATH}/log/unicorn.stderr.log"
+stdout_path "#{APP_PATH}/log/unicorn.stdout.log"
 
 # combine REE with "preload_app true" for memory savings
 # http://rubyenterpriseedition.com/faq.html#adapt_apps_for_cow
