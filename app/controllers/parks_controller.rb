@@ -19,9 +19,6 @@ WHERE {
   OPTIONAL {
     <#{@park[:uri]}> dcterms:description ?description .
   }
-  OPTIONAL {
-    <#{@park[:uri]}> openpark:flickrID ?flickrID .
-  }
 }
     """
     puts query
@@ -29,12 +26,12 @@ WHERE {
     @markers = []
     results.each do |solution|
       @markers << { :latlng => [solution[:lat].to_s.to_f, solution[:long].to_s.to_f],
-        :popup => "<a href=\"#{solution[:park].to_s}\">#{solution[:label].to_s}</a>" }
+        :popup => solution[:label].to_s,
+        :icon => { :icon_url => "#{ActionController::Base.helpers.asset_path('marker-icon.png')}", :shadow_url => "#{ActionController::Base.helpers.asset_path('marker-shadow.png')}", :retina_url => "#{ActionController::Base.helpers.asset_path('marker-icon-2x.png')}" } }
       @park[:label] = solution[:label]
       @park[:lat] = solution[:lat]
       @park[:long] = solution[:long]
       @park[:description] = solution[:description]
-      @park[:flickrID] = solution[:flickrID]
     end
   end
 end
