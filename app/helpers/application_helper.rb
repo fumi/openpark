@@ -75,7 +75,7 @@ module ApplicationHelper
       markers.each_with_index do |marker, index|
         if marker[:icon]
           icon_settings = prep_icon_settings(marker[:icon])
-          output << "var #{icon_settings[:name]}#{index} = L.icon({iconUrl: '#{icon_settings[:icon_url]}', shadowUrl: '#{icon_settings[:shadow_url]}', iconSize: #{icon_settings[:icon_size]}, shadowSize: #{icon_settings[:shadow_size]}, iconAnchor: #{icon_settings[:icon_anchor]}, shadowAnchor: #{icon_settings[:shadow_anchor]}, popupAnchor: #{icon_settings[:popup_anchor]}})"
+          output << "var #{icon_settings[:name]}#{index} = L.icon({iconUrl: '#{icon_settings[:icon_url]}', retinaUrl: '#{icon_settings[:retina_url]}', shadowUrl: '#{icon_settings[:shadow_url]}', iconSize: #{icon_settings[:icon_size]}, shadowSize: #{icon_settings[:shadow_size]}, iconAnchor: #{icon_settings[:icon_anchor]}, shadowAnchor: #{icon_settings[:shadow_anchor]}, popupAnchor: #{icon_settings[:popup_anchor]}})"
           output << "marker = L.marker([#{marker[:latlng][0]}, #{marker[:latlng][1]}], {icon: #{icon_settings[:name]}#{index}})"
         else
           output << "marker = L.marker([#{marker[:latlng][0]}, #{marker[:latlng][1]}])"
@@ -125,6 +125,7 @@ module ApplicationHelper
 
   def prep_icon_settings(settings)
     settings[:name] = 'icon' if settings[:name].nil? or settings[:name].blank?
+    settings[:retina_url] = '' if settings[:retina_url].nil?
     settings[:shadow_url] = '' if settings[:shadow_url].nil?
     settings[:icon_size] = [] if settings[:icon_size].nil?
     settings[:shadow_size] = [] if settings[:shadow_size].nil?
