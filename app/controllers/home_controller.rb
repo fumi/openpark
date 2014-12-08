@@ -20,8 +20,8 @@ WHERE {
     results.each do |solution|
       link = solution[:park].to_s.gsub(/http:\/\/.*?\//, '')
       @markers << { :latlng => [solution[:lat].to_s.to_f, solution[:long].to_s.to_f],
-        :popup => "<a href=\"#{link}\">#{solution[:label].to_s}</a>" }
-#        :popup => "#{solution[:label].to_s}" }
+        :popup => "<a href=\"#{link}\">#{solution[:label].to_s}</a>",
+        :icon => { :icon_url => "#{ActionController::Base.helpers.asset_path('marker-icon.png')}", :shadow_url => "#{ActionController::Base.helpers.asset_path('marker-shadow.png')}", :retina_url => "#{ActionController::Base.helpers.asset_path('marker-icon-2x.png')}" } }
     end
   end
 end
