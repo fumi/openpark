@@ -16,6 +16,6 @@
 //= require leaflet
 //= require leaflet.markercluster
 //= require galleria/galleria
-//= require galleria/galleria.classic
+//= require galleria/galleria.classic.min
 //= require galleria/galleria.flickr
 //= require_tree .
