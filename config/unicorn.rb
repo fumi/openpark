@@ -23,7 +23,7 @@ listen "#{APP_PATH}/tmp/unicorn.sock"
 timeout 60
 
 # feel free to point this anywhere accessible on the filesystem
-pid "#{APP_PATH}/tmp/yokohama.openpark.jp.pid"
+pid "#{APP_PATH}/tmp/unicorn.pid"
 
 # some applications/frameworks log to stderr or stdout, so prevent
 # them from going to /dev/null when daemonized here:
