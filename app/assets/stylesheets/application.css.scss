@@ -2,6 +2,11 @@
 //= depend_on "layers-2x.png"
 //= depend_on "marker-icon.png"
 //= depend_on "marker-shadow.png"
+//= depend_on "bootleaf/favicon-76.png"
+//= depend_on "bootleaf/favicon-120.png"
+//= depend_on "bootleaf/favicon-152.png"
+//= depend_on "bootleaf/favicon-196.png"
+//= depend_on "bootleaf/favicon.ico"
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -10,4 +15,7 @@
 @import "leaflet";
 @import "leaflet.markercluster";
 @import "leaflet.markercluster.default";
+@import "bootleaf/bootleaf";
+@import "leaflet-locatecontrol/leaflet.locatecontrol";
+@import "leaflet-groupedlayercontrol/leaflet.groupedlayercontrol";
 @import "*.scss";
