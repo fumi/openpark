@@ -4,7 +4,7 @@ gem 'rails', '4.1.7'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.5'
 gem 'bootstrap-sass'
-gem 'font-awesome-sass'
+gem 'font-awesome-rails'
 gem 'haml-rails'
 
 gem 'uglifier', '>= 1.3.0'
