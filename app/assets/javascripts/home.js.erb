@@ -1,5 +1,5 @@
 $(function(){
-  var map, featureList, parkSearch = [];
+  var map, featureList, parkSearch = [], boundarySearch = [];
   
   $(document).on("click", ".feature-row", function(e) {
     sidebarClick(parseInt($(this).attr("id"), 10));
@@ -83,7 +83,29 @@ $(function(){
   
   /* Overlay Layers */
   var highlight = L.geoJson(null);
-  
+
+  var boundaries = L.geoJson(null, {
+    style: function (feature) {
+      return {
+        color: "#6666FF",
+        fill: false,
+        opacity: 0.7,
+        clickable: false
+      };
+    },
+    onEachFeature: function (feature, layer) {
+      boundarySearch.push({
+        name: layer.feature.properties.BoundaryName,
+        source: "境界線",
+        id: L.stamp(layer),
+        bounds: layer.getBounds()
+      });
+    }
+  });
+  $.getJSON("/data/boundary-kanazawa-ku.geojson", function (data) {
+    boundaries.addData(data);
+  });
+    
   /* Single marker cluster layer to hold all clusters */
   var markerClusters = new L.MarkerClusterGroup({
     spiderfyOnMaxZoom: true,
@@ -143,7 +165,7 @@ $(function(){
   map = L.map("map", {
     zoom: 13,
     center: [35.355, 139.655],
-    layers: [cyberjapanStd, markerClusters, highlight],
+    layers: [boundaries, cyberjapanStd, markerClusters, highlight],
     zoomControl: false,
     attributionControl: true
   });
@@ -232,10 +254,21 @@ $(function(){
   /* Typeahead search functionality */
   $(document).one("ajaxStop", function () {
     $("#loading").hide();
-    /* Fit map to boroughs bounds */
+    /* Fit map to boundaries */
+    map.fitBounds(boundaries.getBounds());
     featureList = new List("features", {valueNames: ["feature-name"]});
     featureList.sort("feature-name", {order:"asc"});
   
+    var boundariesBH = new Bloodhound({
+      name: "Boundaries",
+      datumTokenizer: function (d) {
+        return Bloodhound.tokenizers.whitespace(d.name);
+      },
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      local: boundarySearch,
+      limit: 10
+    });
+      
     var parksBH = new Bloodhound({
       name: "公園",
       datumTokenizer: function (d) {
@@ -277,6 +310,7 @@ $(function(){
       limit: 10
     });
     parksBH.initialize();
+    
     geonamesBH.initialize();
   
     /* instantiate the typeahead UI */
