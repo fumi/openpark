@@ -76,6 +76,11 @@ $(function(){
     attribution: "<a href='http://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html' target='_blank'>国土地理院</a>"
   });
   
+  var cyberjapanPale = L.tileLayer("http://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    attribution: "<a href='http://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html' target='_blank'>国土地理院</a>"
+  });
+  
   /* Overlay Layers */
   var highlight = L.geoJson(null);
   
@@ -204,7 +209,9 @@ $(function(){
   }
   
   var baseLayers = {
-    "地理院標準地図": cyberjapanStd
+    "地理院標準地図": cyberjapanStd,
+    "地理院淡色地図": cyberjapanPale,
+    "Mapquest OSM": mapquestOSM,
   };
   
   var groupedOverlays = {
