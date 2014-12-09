@@ -38,11 +38,14 @@
         .navbar-collapse.collapse
           %ul.nav.navbar-nav
             %li
-              %a{ :href => "/" } Home
+              %a#about-btn{ "data-target" => ".navbar-collapse.in", "data-toggle" => "collapse", :href => "#" }
+                = fa_icon "info-circle", class: "white", text: "About"
+            %li.hidden-xs
+              %a#list-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
+                = fa_icon "list", class: "white", text: "公園リスト"
             %li
-              %a#sparql-btn{ :href => "/sparql" } SPARQL
-            %li
-              %a#about-btn{ "data-target" => ".navbar-collapse.in", "data-toggle" => "collapse", :href => "#" } About
+              %a#sparql-btn{ :href => "/sparql" }
+                = fa_icon "question-circle", class: "white", text: "SPARQL"
           %form.navbar-form.navbar-right{ :role => "search", :action => "/search" }
             .form-group
               %input#text.form-control{ :name => "text", :type => "text", :placeholder => "野島" }
