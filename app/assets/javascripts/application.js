@@ -20,5 +20,4 @@
 //= require galleria/galleria.flickr
 //= require leaflet-locatecontrol/leaflet.locatecontrol
 //= require leaflet-groupedlayercontrol/leaflet.groupedlayercontrol
-//= require app_assets
 //= require_tree .
