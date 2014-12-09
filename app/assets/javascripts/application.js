@@ -18,4 +18,5 @@
 //= require galleria/galleria
 //= require galleria/galleria.classic.min
 //= require galleria/galleria.flickr
+//= require bootleaf/bootleaf
 //= require_tree .
