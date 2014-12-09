@@ -31,9 +31,9 @@
         .navbar-header
           .navbar-icon-container
             %a#nav-btn.navbar-icon.pull-right.visible-xs{:href => "#"}
-              %span.fa.fa-bars.fa-lg.white
+              = fa_icon "bars lg", class: "white"
             %a#sidebar-toggle-btn.navbar-icon.pull-right.visible-xs{:href => "#"}
-              %span.fa.fa-search.fa-lg.white
+              = fa_icon "search lg", class: "white"
           %a.navbar-brand{ :href => "/" }  Open Park Yokohama
         .navbar-collapse.collapse
           %ul.nav.navbar-nav
@@ -42,10 +42,47 @@
             %li
               %a#sparql-btn{ :href => "/sparql" } SPARQL
             %li
-              %a#about-btn{ "data-target" => ".navbar-collapse.in", "data-toggle" => "collapse", :href => "#" }
-                %i.fa.fa-question-circle.white About
+              %a#about-btn{ "data-target" => ".navbar-collapse.in", "data-toggle" => "collapse", :href => "#" } About
           %form.navbar-form.navbar-right{ :role => "search", :action => "/search" }
             .form-group
               %input#text.form-control{ :name => "text", :type => "text", :placeholder => "野島" }
-              %button.btn.btn-default{ :type => "submit" } 検索
+              %button.btn.btn-default{ :type => "submit" } 
+                = fa_icon "search", text: "検索"
     = yield
+    #aboutModal.modal.fade{:role => "dialog", :tabindex => "-1"}
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+            %h4.modal-title Open Park Yokohamaについて
+          .modal-body
+            %ul#aboutTabs.nav.nav-tabs
+              %li.active
+                %a{"data-toggle" => "tab", :href => "#about"}
+                  %span.fa.fa-question-circle>
+                  \&nbsp;About
+            #aboutTabsContent.tab-content
+              #about.tab-pane.fade.active.in
+                %p
+                  Open Park Yokohamaは市民が公園をもっと有効に活用できるようにデータを再整理して公開するサイトです．
+                  %a{ :href => "http://www.city.yokohama.lg.jp/kanazawa/kz-opendata/", :target => "_blank" } 金沢区オープンデータ
+                  のデータをもとに，公園名や遊具で公園を探すことができます．
+                  また，試験的に30数カ所の公園に設置されている看板の写真を集めています．看板から公園での禁止事項をまとめて提供する予定です．
+                .panel.panel-primary
+                  .panel-heading データソース
+                  %ul.list-group
+                    %li.list-group-item
+                      %a{ :href => "http://www.city.yokohama.lg.jp/kanazawa/kz-opendata/data/5-kz-chishin.csv", :target => "_blank" } 金沢区内公園
+                    %li.list-group-item
+                      %a{ :href => "http://www.city.yokohama.lg.jp/kanazawa/kz-opendata/data/13-kz-kodomokatei.csv", :target => "_blank" } 金沢区内公園レビュー
+                    %li.list-group-item
+                      %a{ :href => "http://www.city.yokohama.lg.jp/kanazawa/kz-opendata/data/4-kz-doboku.csv", :target => "_blank" } 公園遊具リスト
+                    %li.list-group-item
+                      %a{ :href => "https://www.flickr.com/photos/fumihirokato/sets/72157649508418932/", :target => "_blank" } 横浜市金沢区 - Flickr
+                %p
+                  作成者: Fumihiro Kato (
+                  %a{ :href => "https//twitter.com/fumi1" } @fumi1
+                  )
+                  
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
