@@ -166,13 +166,9 @@ $(function(){
     highlight.clearLayers();
   });
   
-  var zoomControl = L.control.zoom({
-    position: "bottomright"
-  }).addTo(map);
-  
   /* GPS enabled geolocation control set to follow the user's location */
   var locateControl = L.control.locate({
-    position: "bottomright",
+    position: "topleft",
     drawCircle: true,
     follow: true,
     setView: true,
@@ -200,6 +196,10 @@ $(function(){
       maximumAge: 10000,
       timeout: 10000
     }
+  }).addTo(map);
+  
+  var zoomControl = L.control.zoom({
+    position: "topleft"
   }).addTo(map);
   
   /* Larger screens get expanded layer control and visible sidebar */
