@@ -1,4 +1,41 @@
 module ApplicationHelper
+
+  def to_geojson_from_sparql_results(results)
+    json = {}
+    json["type"] = "FeatureCollection"
+    json["features"] = []
+    results.each do |result|
+      tmp = {}
+      tmp["type"] = "Feature"
+      tmp["geometry"] = {}
+      tmp["geometry"]["type"] = "Point"
+      tmp["geometry"]["coordinates"] = [result[:long].to_s.to_f, result[:lat].to_s.to_f]
+      tmp["properties"] = {}
+      result.each do |key, value|
+        tmp["properties"]["#{key}".to_s] = value.to_s
+      end
+      json["features"] << tmp
+    end
+    puts json
+    json
+  end
+
+  def to_geojson_from_sparql_results_bak(results)
+    str = '{ "type": "FeatureCollection",\n  \"features\": [\n'
+    
+    results.each do |result|
+      str << '    { "type": "Feature",\n'
+      str << '      "geometry":{ "type": "Point", "coordinates": [#{result[:long]}, #{result[:lat]}] }\n' 
+      str << '      "properties": { '
+      result.each do |key, value|
+        str << '"#{key}": "#{value}", '
+      end
+      str << '      }\n'
+      str << '    }\n'
+    end
+    str << '  ]\n}\n'
+    str.to_json
+  end
   # Original is map function of Leaflet::ViewHelpers
   # 
   # Copyright (c) 2010-2013, Vladimir Agafonkin

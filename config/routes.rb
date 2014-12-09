@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get 'parks/:id' => 'parks#view'
 
+  get 'parks/all/geojson' => 'parks#all_geojson'
+
   get 'search' => 'search#index'
 
   # Example of regular route:

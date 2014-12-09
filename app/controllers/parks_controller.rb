@@ -34,4 +34,23 @@ WHERE {
       @park[:description] = solution[:description]
     end
   end
+
+  def all_geojson
+    client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
+    query = """PREFIX geo: <#{RDF::GEO.to_s}>
+PREFIX rdfs: <#{RDF::RDFS.to_s}>
+PREFIX schema: <#{RDF::SCHEMA.to_s}>
+
+SELECT ?park ?label ?lat ?long
+WHERE {
+  ?park a schema:Park ;
+    rdfs:label ?label ;
+    geo:lat ?lat ;
+    geo:long ?long .
+}
+    """
+    results = client.query(query)
+    
+    render :json => view_context.to_geojson_from_sparql_results(results)
+  end
 end

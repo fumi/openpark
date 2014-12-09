@@ -1,33 +1,51 @@
 !!! 5
 %html
   %head
-    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"}
+    %meta{ :charset => "utf-8" }
+    %meta{ :content => "IE=edge", "http-equiv" => "X-UA-Compatible" }
+    %meta{ :content => "initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width", :name => "viewport"}
+    %meta{ :name => "mobile-web-app-capable", :content => "yes"}
+    %meta{ :name => "apple-mobile-web-app-capable", :content => "yes" }
+    %meta{ :name => "description", :content => "Open Park Yokohama" }
+    %meta{ :name => "author", :content => "Fumihiro Kato" }
     = stylesheet_link_tag    'application', media: 'all'
+    %link{:href => "//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css", :rel => "stylesheet"}
     = javascript_include_tag 'application'
+    %script{ :src => "//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js" }
+    %script{ :src => "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js" }
+    %script{ :src => "//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js" }
+    %script{ :src => "//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js" }
+    %link{ :href => "#{asset_path('bootleaf/favicon-76.png')}", :rel => "apple-touch-icon", :sizes => "76x76"}
+    %link{ :href => "#{asset_path('bootleaf/favicon-120.png')}", :rel => "apple-touch-icon", :sizes => "120x120"}
+    %link{ :href => "#{asset_path('bootleaf/favicon-152.png')}", :rel => "apple-touch-icon", :sizes => "152x152"}
+    %link{ :href => "#{asset_path('bootleaf/favicon-196.png')}", :rel => "icon", :sizes => "196x196"}
+    %link{ :href => "#{asset_path('bootleaf/favicon.ico')}", :rel => "icon", :type => "image/x-icon"}
     = csrf_meta_tags
     %title Open Park Yokohama
     = yield :head
     :css
       body { padding-top: 70px; }
   %body
-    .navbar.navbar-default.navbar-fixed-top{ :role => "navigation" }
+    .navbar.navbar-inverse.navbar-fixed-top{ :role => "navigation" }
       .container-fluid
         .navbar-header
-          %button.navbar-toggle.collapsed{ :type => "button", :"data-toggle" => "collapse", :"data-target" => "#navbar-collapse-1" }
-            %span.sr-only Toggle navigation
-            %span.icon-bar
+          .navbar-icon-container
+            %a#nav-btn.navbar-icon.pull-right.visible-xs{:href => "#"}
+              %span.fa.fa-bars.fa-lg.white
+            %a#sidebar-toggle-btn.navbar-icon.pull-right.visible-xs{:href => "#"}
+              %span.fa.fa-search.fa-lg.white
           %a.navbar-brand{ :href => "/" }  Open Park Yokohama
-        #navbar-collapse-1.navbar-collapse.collapse
+        .navbar-collapse.collapse
           %ul.nav.navbar-nav
             %li
               %a{ :href => "/" } Home
             %li
-              %a{ :href => "/sparql" } SPARQL
+              %a#sparql-btn{ :href => "/sparql" } SPARQL
             %li
-              %a{ :href => "/about" } About
+              %a#about-btn{ "data-target" => ".navbar-collapse.in", "data-toggle" => "collapse", :href => "#" }
+                %i.fa.fa-question-circle.white About
           %form.navbar-form.navbar-right{ :role => "search", :action => "/search" }
             .form-group
               %input#text.form-control{ :name => "text", :type => "text", :placeholder => "野島" }
               %button.btn.btn-default{ :type => "submit" } 検索
-    #container
-      = yield
+    = yield

@@ -1,54 +1,100 @@
-.row
-  .col-md-12
-    %div{ :role => "tabpanel" }
-      %ul.nav.nav-pills.nav-justified{ :role => "tablist" }
-        %li.active{ :role => "presentation" }
-          %a{ :href => "#mapTab", :"aria-controls" => "map", :role => "tab", :"data-toggle" => "tab" } 地図から探す
-        %li{ :role => "presentation" }
-          %a{ :href => "#equipmentTab", :"aria-controls" => "map", :role => "tab", :"data-toggle" => "tab" } 遊具から探す
-        %li{ :role => "presentation" }
-          %a{ :href => "#prohibitionTab", :"aria-controls" => "map", :role => "tab", :"data-toggle" => "tab" } 禁止から探す
-      .tab-content
-        #mapTab.tab-pane.active{ :role => "tabpanel" }
-          = map_to_leaflet(:center => { :latlng => [35.355, 139.655], :zoom => 13 }, :markers => @markers, :cluster => true )
-        #equipmentTab.tab-pane{ :role => "tabpanel" }
-          %form{ :role => "form", :action => "/search" }
-            .form-group
-              %label 種類
-              %select#equipmentType.form-control{ :name => "equipmentType" }
-                %option 全て
-                %option 砂場
-                %option ブランコ
-                %option 健康遊具
-                %option 鉄棒
-                %option すべり台
-                %option スプリング遊具
-                %option 鋼製複合遊具
-                %option その他遊具
-                %option コンクリート遊具
-                %option ジャングルジム
-                %option プレイスカルプチュア
-                %option クライム遊具
-                %option バスケットゴール
-                %option スウィング遊具
-                %option シーソー
-                %option 幼児用遊具樹脂製球体
-                %option 鋼製遊具
-                %option ローラーすべり台
-                %option 砂場テーブル
-                %option うんてい
-                %option ターザンロープ
-                %option 水遊場
-                %option ふみいたストレッチ
-                %option ぶらさがり
-                %option 木製遊具
-                %option 背伸ばしベンチ
-                %option コンクリート製複合遊具
-                %option ザイルクライム
-                %option ブランコマット
-                %option 遊具説明板
-            %button.btn.btn-primary{ :type => "submit" } 検索
-        #prohibitionTab.tab-pane{ :role => "tabpanel" }
-          %form{ :role => "form" }
-            .form-group
-              %label 
+#container
+  #sidebar
+    .sidebar-wrapper
+      #features.panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            公園リスト
+            %button#sidebar-hide-btn.btn.btn-xs.btn-default.pull-right{:type => "button"}
+              %i.fa.fa-chevron-left
+        .panel-body
+          %p
+            .row
+              .col-xs-8.col-md-8
+                %input.form-control.search{:placeholder => "Filter", :type => "text"}/
+              .col-xs-4.col-md-4
+                %button#sort-btn.btn.btn-primary.pull-right.sort{"data-sort" => "feature-name", :type => "button"}
+                  %i.fa.fa-sort>
+                  \&nbsp;&nbsp;Sort
+        .sidebar-table
+          %table#feature-list.table.table-hover
+            %thead.hidden
+              %tr
+                %th Icon
+                %tr
+                  %tr
+                    %th Name
+                    %tr
+                      %tr
+                        %th Chevron
+                        %tr
+            %tbody.list
+  #map
+#loading
+  .loading-indicator
+    .progress.progress-striped.active
+      .progress-bar.progress-bar-info.progress-bar-full
+#aboutModal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+        %h4.modal-title Open Park Yokohamaについて
+      .modal-body
+        %ul#aboutTabs.nav.nav-tabs
+          %li.active
+            %a{"data-toggle" => "tab", :href => "#about"}
+              %span.fa.fa-question-circle>
+              \&nbsp;About
+        #aboutTabsContent.tab-content
+          #about.tab-pane.fade.active.in
+            %p
+              Open Park Yokohamaは市民が公園をもっと有効に活用できるようにデータを再整理して公開するサイトです．
+              %a{ :href => "http://www.city.yokohama.lg.jp/kanazawa/kz-opendata/", :target => "_blank" } 金沢区オープンデータ
+              のデータをもとに，公園名や遊具で公園を探すことができます．
+              また，試験的に30数カ所の公園に設置されている看板の写真を集めています．看板から公園での禁止事項をまとめて提供する予定です．
+            .panel.panel-primary
+              .panel-heading データソース
+              %ul.list-group
+                %li.list-group-item
+                  %a{ :href => "http://www.city.yokohama.lg.jp/kanazawa/kz-opendata/data/5-kz-chishin.csv", :target => "_blank" } 金沢区内公園
+                %li.list-group-item
+                  %a{ :href => "http://www.city.yokohama.lg.jp/kanazawa/kz-opendata/data/13-kz-kodomokatei.csv", :target => "_blank" } 金沢区内公園レビュー
+                %li.list-group-item
+                  %a{ :href => "http://www.city.yokohama.lg.jp/kanazawa/kz-opendata/data/4-kz-doboku.csv", :target => "_blank" } 公園遊具リスト
+                %li.list-group-item
+                  %a{ :href => "https://www.flickr.com/photos/fumihirokato/sets/72157649508418932/", :target => "_blank" } 横浜市金沢区 - Flickr
+            %p
+              作成者: Fumihiro Kato (
+              %a{ :href => "https//twitter.com/fumi1" } @fumi1
+              )
+              
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+#legendModal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+        %h4.modal-title Map Legend
+      .modal-body
+        %p Map Legend goes here...
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+#featureModal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+        %h4#feature-title.modal-title.text-primary
+      #feature-info.modal-body
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+#attributionModal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+        %h4.modal-title
+      .modal-body
+        #attribution
