@@ -78,6 +78,25 @@ Galleria.Flickr.prototype = {
         @returns Instance
     */
 
+    user_id_and_tags_all: function( arg, callback ) {
+        var args = arg.split('+');
+        
+        return this._find({
+            user_id: args[0],
+            tags: args[1],
+            tag_mode: "all"
+        }, callback);
+    },
+    
+    /**
+        Search for anything at Flickr by tag
+
+        @param {String} tag The tag(s) to search for
+        @param {Function} [callback] The callback to be called when the data is ready
+
+        @returns Instance
+    */
+
     tags: function( tag, callback ) {
         return this._find({
             tags: tag
@@ -203,6 +222,8 @@ Galleria.Flickr.prototype = {
         $.each(params, function( key, value ) {
             url += '&' + key + '=' + value;
         });
+        url = encodeURI(url)
+        alert(url);
 
         $.getJSON(url, function(data) {
             if ( data.stat === 'ok' ) {
@@ -357,7 +378,7 @@ Galleria.prototype.load = function() {
         },100);
 
         // create the instance
-        f = new Galleria.Flickr();
+        f = new Galleria.Flickr("bb7bbaa0eaea3faa8d2bc1bd5df8500f");
 
         // apply Flickr options
         if ( typeof self._options.flickrOptions === 'object' ) {
