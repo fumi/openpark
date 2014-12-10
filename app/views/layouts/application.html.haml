@@ -46,7 +46,7 @@
                 = fa_icon "list", class: "white", text: "公園リスト"
             %li.dropdown
               %a#equipment-drop.dropdown-toggle{ :href => "#", "data-toggle" => "dropdown" }
-                遊具
+                = fa_icon "soccer-ball-o", class: "white", text: "遊具"
                 %b.caret
                 %ul.dropdown-menu
                   %li
@@ -122,6 +122,40 @@
             %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
             %h4.modal-title 遊具種類検索
           .modal-body
-            %p Map Legend goes here...
+            %form{ :role => "form", :action => "/search" }
+              .form-inline
+                %select#equipmentType.form-control{ :name => "equipmentType" }
+                  %option 全て
+                  %option 砂場
+                  %option ブランコ
+                  %option 健康遊具
+                  %option 鉄棒
+                  %option すべり台
+                  %option スプリング遊具
+                  %option 鋼製複合遊具
+                  %option その他遊具
+                  %option コンクリート遊具
+                  %option ジャングルジム
+                  %option プレイスカルプチュア
+                  %option クライム遊具
+                  %option バスケットゴール
+                  %option スウィング遊具
+                  %option シーソー
+                  %option 幼児用遊具樹脂製球体
+                  %option 鋼製遊具
+                  %option ローラーすべり台
+                  %option 砂場テーブル
+                  %option うんてい
+                  %option ターザンロープ
+                  %option 水遊場
+                  %option ふみいたストレッチ
+                  %option ぶらさがり
+                  %option 木製遊具
+                  %option 背伸ばしベンチ
+                  %option コンクリート製複合遊具
+                  %option ザイルクライム
+                  %option ブランコマット
+                  %option 遊具説明板
+                %button.btn.btn-primary{ :type => "submit" } 検索            
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
