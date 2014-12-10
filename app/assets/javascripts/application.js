@@ -15,9 +15,9 @@
 //= require bootstrap-sprockets
 //= require leaflet
 //= require leaflet.markercluster
-//= require galleria/galleria
-//= require galleria/galleria.classic.min
-//= require galleria/galleria.flickr
+//= require galleria
+//= require galleria.classic.min
+//= require galleria.flickr
 //= require leaflet-locatecontrol/leaflet.locatecontrol
 //= require leaflet-groupedlayercontrol/leaflet.groupedlayercontrol
 //= require_tree .
