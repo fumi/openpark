@@ -158,10 +158,12 @@ $(function(){
     }
   });
   $.getJSON("/parks/all/geojson", function (data) {
-    parks.addData(data);
-    map.addLayer(parkLayer);
+    if(map != null) {
+      parks.addData(data);
+      map.addLayer(parkLayer);
+    }
   });
-  
+
   map = L.map("map", {
     zoom: 13,
     center: [35.355, 139.655],
