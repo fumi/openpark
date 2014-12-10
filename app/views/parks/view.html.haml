@@ -42,11 +42,12 @@
         :javascript
           Galleria.loadTheme("#{asset_path('galleria.classic.js')}")
           Galleria.run('#galleria', {
-            flickr: 'tags:Yokohama,Park,Kanazawa-ku,#{@park[:label]},横浜市金沢区',
+            flickr: 'user_id_and_tags_all:63585651@N06+Park,#{@park[:label]},横浜市金沢区',
             autoplay: 5000,
             imageCrop: false,
             carousel: true,
             lightbox: true,
           });
+      -# flickr: 'tags:Yokohama,Park,Kanazawa-ku,#{@park[:label]},横浜市金沢区',
     .col-md-4
       = map_to_leaflet(:center => { :latlng => [@park[:lat], @park[:long]], :zoom => 16 }, :markers => @markers )
