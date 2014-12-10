@@ -30,7 +30,7 @@
     .col-md-offset-2.col-md-4
       #galleria
         :javascript
-          Galleria.loadTheme("#{asset_path('galleria/galleria.classic.min.js')}")
+          Galleria.loadTheme("#{asset_path('galleria/galleria.classic.js')}")
           Galleria.run('#galleria', {
             flickr: 'tags:Yokohama,Park,Kanazawa-ku,#{@park[:label]},横浜市金沢区'
           });
