@@ -42,7 +42,9 @@
                 = fa_icon "info-circle", class: "white", text: "About"
             -#%li.hidden-xs
             %li
-              %a#list-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
+              %a{ :href => "/" }
+                = fa_icon "list", class: "white", text: "公園マップ"
+              -#%a#list-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
                 = fa_icon "list", class: "white", text: "公園一覧"
             %li.dropdown
               %a#equipment-drop.dropdown-toggle{ :href => "#", "data-toggle" => "dropdown" }
