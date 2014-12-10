@@ -23,6 +23,12 @@ $(function(){
     return false;
   });
   
+  $("#age-limit-btn").click(function() {
+    $("#ageLimitModal").modal("show");
+    $(".navbar-collapse.in").collapse("hide");
+    return false;
+  });
+  
   $("#nav-btn").click(function() {
     $(".navbar-collapse").collapse("toggle");
     return false;
