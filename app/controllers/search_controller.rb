@@ -4,7 +4,6 @@ class SearchController < ApplicationController
     client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
     if params[:equipmentType] and !params[:equipmentType].empty?
       equipment_type = params[:equipmentType]
-      equipment_type = "設備" if equipment_type.match("全て")
 
       query = """PREFIX geo: <#{RDF::GEO.to_s}>
 PREFIX rdfs: <#{RDF::RDFS.to_s}>
@@ -17,7 +16,11 @@ SELECT DISTINCT ?uri ?label ?postalCode ?address ?lat ?long
 WHERE {
   ?uri a park:公園 ;
     rdfs:label ?label ;
-    ic:地点_設備/dcterms:subject park:#{equipment_type} ;
+    """
+      unless  equipment_type.match("全て")
+        query << "    ic:地点_設備/dcterms:subject park:#{equipment_type} ;"
+      end
+      query << """
     ic:地点_場所/ic:場所_住所 [
       ic:住所_郵便番号 ?postalCode ;
       ic:住所_表記 ?address 
