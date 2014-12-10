@@ -223,7 +223,6 @@ Galleria.Flickr.prototype = {
             url += '&' + key + '=' + value;
         });
         url = encodeURI(url)
-        alert(url);
 
         $.getJSON(url, function(data) {
             if ( data.stat === 'ok' ) {
