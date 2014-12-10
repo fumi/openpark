@@ -53,7 +53,10 @@
                 %ul.dropdown-menu
                   %li
                     %a#equipment-type-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
-                      種類から探す
+                      種類から
+                  %li
+                    %a#age-limit-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
+                      年齢から
             %li
               %a#sparql-btn{ :href => "/sparql" }
                 = fa_icon "question-circle", class: "white", text: "SPARQL"
@@ -149,10 +152,10 @@
         .modal-content
           .modal-header
             %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
-            %h4.modal-title 遊具種類検索
+            %h4.modal-title 種類から
           .modal-body
-            %form{ :role => "form", :action => "/search" }
-              .form-inline
+            %form.form-inline{ :role => "form", :action => "/search" }
+              .form-group
                 %select#equipmentType.form-control{ :name => "equipmentType" }
                   %option 全て
                   %option 砂場
@@ -185,10 +188,23 @@
                   %option ザイルクライム
                   %option ブランコマット
                   %option 遊具説明板
-                %button.btn.btn-primary{ :type => "submit" } 検索            
+              %button.btn.btn-primary{ :type => "submit" } 検索            
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
-
+    #ageLimitModal.modal.fade{:role => "dialog", :tabindex => "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+            %h4.modal-title 年齢から
+          .modal-body
+            %form.form-inline{ :role => "form", :action => "/search" }
+              .form-group
+                %input#age.form-control{ :type => "number", :name => "age", :min => "0", :value => "3", :required => "required" }
+                %label{ :for => "age" } 歳
+              %button.btn.btn-primary{ :type => "submit" } 検索            
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
     :javascript
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
