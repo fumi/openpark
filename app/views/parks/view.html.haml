@@ -23,22 +23,42 @@
 
 .container-fluid
   .row
-    .col-md-offset-2.col-md-8
+    .col-md-offset-1.col-md-10
       %h1= @park[:label]
-      %table.table.table-striped
-        %tbody
-          %tr
-            %td 緯度
-            %td= @park[:lat]
-          %tr
-            %td 経度
-            %td= @park[:long]
-          - if @park[:description]
-            %tr
-              %td 説明
-              %td= @park[:description]
+      - if @park[:description]
+        %p= @park[:description]
+      %p= "住所: 〒#{@park[:postalcode]} #{@park[:address]}"
+      %p= "座標: #{@park[:lat]},#{@park[:long]}"
+      - if @equipment_solutions.count > 0      
+        .row
+          - @equipment_solutions.each do |equipment|
+            .col-xs-12.col-md-4
+              .panel.panel-default
+                .panel-heading
+                  %h3.panel-title= equipment[:label]
+                %table.table.table-condensed
+                  %tbody
+                    %tr
+                      %th 種類
+                      %td= equipment[:subject_label]
+                    - if equipment[:equipment_spec]
+                      %tr
+                        %th 仕様・規格
+                        %td= equipment[:user]            
+                    %tr
+                      %th 管理者
+                      %td= equipment[:organization_label]
+                    %tr
+                      %th 数量
+                      %td= equipment[:count]
+                    - if equipment[:user]
+                      %tr
+                        %th 利用者
+                        %td= equipment[:user]
+                    
+        
   .row
-    .col-xs-12.col-md-offset-2.col-md-4
+    .col-xs-12.col-md-offset-1.col-md-4
       = map_to_leaflet(:container_id => "map_park", :center => { :latlng => [@park[:lat], @park[:long]], :zoom => 16 }, :markers => @markers )
     .col-xs-12.col-md-4
       #galleria
