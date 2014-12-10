@@ -40,9 +40,18 @@
             %li
               %a#about-btn{ "data-target" => ".navbar-collapse.in", "data-toggle" => "collapse", :href => "#" }
                 = fa_icon "info-circle", class: "white", text: "About"
-            %li.hidden-xs
+            -#%li.hidden-xs
+            %li
               %a#list-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
                 = fa_icon "list", class: "white", text: "公園リスト"
+            %li.dropdown
+              %a#equipment-drop.dropdown-toggle{ :href => "#", "data-toggle" => "dropdown" }
+                遊具
+                %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a#equipment-type-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
+                      種類から探す
             %li
               %a#sparql-btn{ :href => "/sparql" }
                 = fa_icon "question-circle", class: "white", text: "SPARQL"
@@ -104,5 +113,15 @@
                   %a{ :href => "https//twitter.com/fumi1" } @fumi1
                   )
                   
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+    #equipmentTypeModal.modal.fade{:role => "dialog", :tabindex => "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+            %h4.modal-title 遊具種類検索
+          .modal-body
+            %p Map Legend goes here...
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
