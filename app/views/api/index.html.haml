@@ -1,0 +1,53 @@
+#container
+  .col-sm-offset-2.col-sm-8
+    %h2 API
+    %p Open Park Yokohamaでは，データアクセス用に以下のAPIを用意しています．
+
+    %p
+      ライセンス: Fumihiro Kato
+      %a{ :rel => "license", :href => "http://creativecommons.org/licenses/by-sa/4.0/" }
+        %img{ :style => "border-width: 0", :src => "https://i.creativecommons.org/l/by-sa/4.0/80x15.png", :alt => "Creative Commons Attribution-ShareAlike 4.0 International License" }
+
+    .panel.panel-default
+      .panel-heading Linked Data
+      .panel-body
+        %p 個々の公園データはLinked Dataになっています．Entity IRIはファイル形式に合わせて303 See Otherでリダイレクトをします．
+        %ul
+          %li Entity IRI: http://yokohama.openpark.jp/parks/[park name]
+          %li Data IRI: http://yokohama.openpark.jp/data/parks/[park name]
+          %li HTTP Method: GET
+          
+        %table.table.table-hover
+          %thead
+            %tr
+              %th ファイル形式
+              %th メディアタイプ
+              %th 拡張子
+          %tbody
+            %tr
+              %td JSON-LD
+              %td application/ld+json
+              %td .jsonld
+            %tr
+              %td Turtle
+              %td text/turtle
+              %td .ttl
+            %tr
+              %td RDF/XML
+              %td application/rdf+xml
+              %td .rdf
+
+        %h3 例: JSON-LDをHTTP Acceptで取得
+        %pre
+          %code
+            $ curl -LH 'Accept: application/ld+json' 'http://yokohama.openpark.jp/parks/海の公園'
+            
+
+        
+            
+    .panel.panel-default
+      .panel-heading SPARQL
+      .panel-body
+        %ul
+          %li
+            %a{ :href => "/sparql" } 公開エンドポイント
