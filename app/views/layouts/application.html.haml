@@ -55,8 +55,8 @@
                     %a#equipment-search-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
                       検索
             %li
-              %a#sparql-btn{ :href => "/sparql" }
-                = fa_icon "question-circle", class: "white", text: "SPARQL"
+              %a#api-btn{ :href => "/api" }
+                = fa_icon "question-circle", class: "white", text: "API"
           %form.navbar-form.navbar-right{ :role => "search", :action => "/search" }
             .form-group
               %input#text.form-control{ :name => "text", :type => "text", :placeholder => "野島" }
