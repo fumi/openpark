@@ -55,21 +55,14 @@
                     %a#equipment-search-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
                       検索
             %li
-              %a#sparql-btn{ :href => "/sparql" }
-                = fa_icon "question-circle", class: "white", text: "SPARQL"
+              %a#api-btn{ :href => "/api" }
+                = fa_icon "question-circle", class: "white", text: "API"
           %form.navbar-form.navbar-right{ :role => "search", :action => "/search" }
             .form-group
               %input#text.form-control{ :name => "text", :type => "text", :placeholder => "野島" }
               %button.btn.btn-default{ :type => "submit" } 
                 = fa_icon "search", text: "検索"
     = yield
-    %footer.footer
-      .container
-        %p
-          Fumihiro Kato
-          %a{ :rel => "license", :href => "http://creativecommons.org/licenses/by-sa/4.0/" }
-            %img{ :style => "border-width: 0", :src => "https://i.creativecommons.org/l/by-sa/4.0/80x15.png", :alt => "Creative Commons Attribution-ShareAlike 4.0 International License" }
-          
     #aboutModal.modal.fade{:role => "dialog", :tabindex => "-1"}
       .modal-dialog.modal-lg
         .modal-content
