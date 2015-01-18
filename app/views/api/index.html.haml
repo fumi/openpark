@@ -8,7 +8,7 @@
       %a{ :rel => "license", :href => "http://creativecommons.org/licenses/by-sa/4.0/" }
         %img{ :style => "border-width: 0", :src => "https://i.creativecommons.org/l/by-sa/4.0/80x15.png", :alt => "Creative Commons Attribution-ShareAlike 4.0 International License" }
 
-    .panel.panel-default
+    .panel.panel-primary
       .panel-heading Linked Data
       .panel-body
         %p 個々の公園データはLinked Dataとして提供しています．Entity IRIにアクセスすると，指定したメディアタイプか拡張子に合わせて303 See Otherでリダイレクトします．
@@ -48,10 +48,14 @@
             $ curl 'http://yokohama.openpark.jp/data/parks/海の公園.ttl'
       
           
-    .panel.panel-default
+    .panel.panel-primary
       .panel-heading SPARQL
       .panel-body
         %p Linked Dataとして提供しているデータは，SPARQLでもアクセス可能です．
         %ul
           %li
             %a{ :href => "/sparql" } 公開エンドポイント
+        %h3 Open Park Data Model
+        %p
+          %img{ :href => "/static_data/OpenParkMode.png", :alt => "Open Park Model" }
+
