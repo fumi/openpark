@@ -52,11 +52,8 @@
                 %b.caret
                 %ul.dropdown-menu
                   %li
-                    %a#equipment-type-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
-                      種類から
-                  %li
-                    %a#age-limit-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
-                      年齢から
+                    %a#equipment-search-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
+                      検索
             %li
               %a#sparql-btn{ :href => "/sparql" }
                 = fa_icon "question-circle", class: "white", text: "SPARQL"
@@ -147,61 +144,53 @@
                   
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
-    #equipmentTypeModal.modal.fade{:role => "dialog", :tabindex => "-1"}
+    #equipmentSearchModal.modal.fade{:role => "dialog", :tabindex => "-1"}
       .modal-dialog
         .modal-content
           .modal-header
             %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
-            %h4.modal-title 種類から
+            %h4.modal-title 遊具検索
           .modal-body
-            %form.form-inline{ :role => "form", :action => "/search" }
+            %form.form-horizontal{ :role => "form", :action => "/search" }
               .form-group
-                %select#equipmentType.form-control{ :name => "equipmentType" }
-                  %option 全て
-                  %option 砂場
-                  %option ブランコ
-                  %option 健康遊具
-                  %option 鉄棒
-                  %option すべり台
-                  %option スプリング遊具
-                  %option 鋼製複合遊具
-                  %option その他遊具
-                  %option コンクリート遊具
-                  %option ジャングルジム
-                  %option プレイスカルプチュア
-                  %option クライム遊具
-                  %option バスケットゴール
-                  %option スウィング遊具
-                  %option シーソー
-                  %option 幼児用遊具樹脂製球体
-                  %option 鋼製遊具
-                  %option ローラーすべり台
-                  %option 砂場テーブル
-                  %option うんてい
-                  %option ターザンロープ
-                  %option 水遊場
-                  %option ふみいたストレッチ
-                  %option ぶらさがり
-                  %option 木製遊具
-                  %option 背伸ばしベンチ
-                  %option コンクリート製複合遊具
-                  %option ザイルクライム
-                  %option ブランコマット
-                  %option 遊具説明板
-              %button.btn.btn-primary{ :type => "submit" } 検索            
-          .modal-footer
-            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
-    #ageLimitModal.modal.fade{:role => "dialog", :tabindex => "-1"}
-      .modal-dialog
-        .modal-content
-          .modal-header
-            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
-            %h4.modal-title 年齢から
-          .modal-body
-            %form.form-inline{ :role => "form", :action => "/search" }
-              .form-group
-                %input#age.form-control{ :type => "number", :name => "age", :min => "0", :value => "3", :required => "required" }
-                %label{ :for => "age" } 歳
+                %label#equipmentTypeLabel.control-label.col-sm-2{ :for => "equipmentType" } 種類
+                .col-sm-4
+                  %select#equipmentType.form-control{ :name => "equipmentType" }
+                    %option 全て
+                    %option 砂場
+                    %option ブランコ
+                    %option 健康遊具
+                    %option 鉄棒
+                    %option すべり台
+                    %option スプリング遊具
+                    %option 鋼製複合遊具
+                    %option その他遊具
+                    %option コンクリート遊具
+                    %option ジャングルジム
+                    %option プレイスカルプチュア
+                    %option クライム遊具
+                    %option バスケットゴール
+                    %option スウィング遊具
+                    %option シーソー
+                    %option 幼児用遊具樹脂製球体
+                    %option 鋼製遊具
+                    %option ローラーすべり台
+                    %option 砂場テーブル
+                    %option うんてい
+                    %option ターザンロープ
+                    %option 水遊場
+                    %option ふみいたストレッチ
+                    %option ぶらさがり
+                    %option 木製遊具
+                    %option 背伸ばしベンチ
+                    %option コンクリート製複合遊具
+                    %option ザイルクライム
+                    %option ブランコマット
+                    %option 遊具説明板
+              .form-group    
+                %label#ageLabel.control-label.col-sm-2{ :for => "age" } 対象年齢
+                .col-sm-4
+                  %input#age.form-control{ :type => "number", :name => "age", :min => "0", :value => "3", :required => "required" }
               %button.btn.btn-primary{ :type => "submit" } 検索            
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
