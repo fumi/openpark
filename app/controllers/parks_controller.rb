@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 class ParksController < ApplicationController
   def view
-    park_uri = "http://yokohama.openpark.jp/parks/" + params[:id]
-    client = SPARQL::Client.new("http://localhost:8890/sparql")
+    park_uri = PREFIXES[:park_resource].dup + params[:id]
+    client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
     
     prefixes = """PREFIX geo: <#{RDF::GEO.to_s}>
 PREFIX rdfs: <#{RDF::RDFS.to_s}>

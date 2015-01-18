@@ -1,9 +1,7 @@
 class DataController < ApplicationController
 
   def show_park
-    #uri = PREFIXES[:park_resource] + params[:id]
-    uri = "http://yokohama.openpark.jp/parks/#{params[:id]}" 
-    #uri = PREFIXES[:park_resource] + params[:id]
+    uri = PREFIXES[:park_resource].dup + params[:id]
     respond_to do |format|
       format.ttl { @result = dump_rdf(:ttl, uri) }
       format.n3 { @result = dump_rdf(:n3, uri) }
