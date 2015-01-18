@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get 'data/parks/:id' => 'data#show_park'
 
+  get 'api' => 'api#index'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

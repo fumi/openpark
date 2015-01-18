@@ -5,7 +5,6 @@ class ParksController < ApplicationController
     respond_to do |format|
       format.html { show_html(id) }
       format.ttl { redirect_to "/data/parks/#{CGI.escape(id)}.ttl" , :status => :see_other }
-      format.n3 { redirect_to "/data/parks/#{CGI.escape(id)}.n3" , :status => :see_other }
       format.jsonld { redirect_to "/data/parks/#{CGI.escape(id)}.jsonld" , :status => :see_other }
       format.rdf { redirect_to "/data/parks/#{CGI.escape(id)}.rdf" , :status => :see_other }
     end
