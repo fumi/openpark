@@ -1,13 +1,13 @@
 #container
   .col-sm-offset-2.col-sm-8
-    %h2 API
+    %h3 Open Park Yokohama API
     %p Open Park Yokohamaでは，データアクセス用に以下のAPIを用意しています．
-
     %p
       ライセンス: Fumihiro Kato
       %a{ :rel => "license", :href => "http://creativecommons.org/licenses/by-sa/4.0/" }
         %img{ :style => "border-width: 0", :src => "https://i.creativecommons.org/l/by-sa/4.0/80x15.png", :alt => "Creative Commons Attribution-ShareAlike 4.0 International License" }
-
+    %p 本サイトで利用している元データについてはメニューからAboutを参照してください．
+      
     .panel.panel-primary
       .panel-heading Linked Data
       .panel-body
@@ -37,12 +37,12 @@
               %td application/rdf+xml
               %td .rdf
 
-        %h3 例1: HTTP AcceptでJSON-LDのファイルを取得
+        %h4 例1: HTTP AcceptでJSON-LDのファイルを取得
         %pre
           %code
             $ curl -LH 'Accept: application/ld+json' 'http://yokohama.openpark.jp/parks/海の公園'
           
-        %h3 例2: Turtleのファイルを拡張子指定して直接取得
+        %h4 例2: Turtleのファイルを拡張子指定して直接取得
         %pre
           %code
             $ curl 'http://yokohama.openpark.jp/data/parks/海の公園.ttl'
