@@ -1,7 +1,39 @@
 # -*- coding: utf-8 -*-
 class ParksController < ApplicationController
   def show
-    park_uri = PREFIXES[:park_resource].dup + params[:id]
+    id = params[:id]
+    respond_to do |format|
+      format.html { show_html(id) }
+      format.ttl { redirect_to "/data/parks/#{CGI.escape(id)}.ttl" , :status => :see_other }
+      format.n3 { redirect_to "/data/parks/#{CGI.escape(id)}.n3" , :status => :see_other }
+      format.jsonld { redirect_to "/data/parks/#{CGI.escape(id)}.jsonld" , :status => :see_other }
+      format.rdf { redirect_to "/data/parks/#{CGI.escape(id)}.rdf" , :status => :see_other }
+    end
+  end
+
+  def all_geojson
+    client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
+    query = """PREFIX geo: <#{RDF::GEO.to_s}>
+PREFIX rdfs: <#{RDF::RDFS.to_s}>
+PREFIX schema: <#{RDF::SCHEMA.to_s}>
+
+SELECT ?park ?label ?lat ?long
+WHERE {
+  ?park a schema:Park ;
+    rdfs:label ?label ;
+    geo:lat ?lat ;
+    geo:long ?long .
+}
+    """
+    results = client.query(query)
+    
+    render :json => view_context.to_geojson_from_sparql_results(results)
+  end
+
+  protected
+
+  def show_html(id)
+    park_uri = PREFIXES[:park_resource].dup + id
     client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
     
     prefixes = """PREFIX geo: <#{RDF::GEO.to_s}>
@@ -63,22 +95,4 @@ WHERE {
 
   end
 
-  def all_geojson
-    client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
-    query = """PREFIX geo: <#{RDF::GEO.to_s}>
-PREFIX rdfs: <#{RDF::RDFS.to_s}>
-PREFIX schema: <#{RDF::SCHEMA.to_s}>
-
-SELECT ?park ?label ?lat ?long
-WHERE {
-  ?park a schema:Park ;
-    rdfs:label ?label ;
-    geo:lat ?lat ;
-    geo:long ?long .
-}
-    """
-    results = client.query(query)
-    
-    render :json => view_context.to_geojson_from_sparql_results(results)
-  end
 end
