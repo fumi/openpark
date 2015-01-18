@@ -11,7 +11,7 @@
     .panel.panel-default
       .panel-heading Linked Data
       .panel-body
-        %p 個々の公園データはLinked Dataになっています．Entity IRIはファイル形式に合わせて303 See Otherでリダイレクトをします．
+        %p 個々の公園データはLinked Dataとして提供しています．Entity IRIにアクセスすると，指定したメディアタイプか拡張子に合わせて303 See Otherでリダイレクトします．
         %ul
           %li Entity IRI: http://yokohama.openpark.jp/parks/[park name]
           %li Data IRI: http://yokohama.openpark.jp/data/parks/[park name]
@@ -37,17 +37,21 @@
               %td application/rdf+xml
               %td .rdf
 
-        %h3 例: JSON-LDをHTTP Acceptで取得
+        %h3 例1: HTTP AcceptでJSON-LDのファイルを取得
         %pre
           %code
             $ curl -LH 'Accept: application/ld+json' 'http://yokohama.openpark.jp/parks/海の公園'
-            
-
-        
-            
+          
+        %h3 例2: Turtleのファイルを拡張子指定して直接取得
+        %pre
+          %code
+            $ curl 'http://yokohama.openpark.jp/data/parks/海の公園.ttl'
+      
+          
     .panel.panel-default
       .panel-heading SPARQL
       .panel-body
+        %p Linked Dataとして提供しているデータは，SPARQLでもアクセス可能です．
         %ul
           %li
             %a{ :href => "/sparql" } 公開エンドポイント
