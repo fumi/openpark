@@ -7,11 +7,13 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  get 'parks/:id' => 'parks#view'
+  get 'parks/:id' => 'parks#show'
 
   get 'parks/all/geojson' => 'parks#all_geojson'
 
   get 'search' => 'search#index'
+
+  get 'data/parks/:id' => 'data#show_park'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

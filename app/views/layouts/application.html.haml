@@ -52,8 +52,8 @@
                 %b.caret
                 %ul.dropdown-menu
                   %li
-                    %a#equipment-type-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
-                      種類から探す
+                    %a#equipment-search-btn{ :href => "#", "data-toggle" => "collapse", "data-target" => ".navbar-collapse.in" }
+                      検索
             %li
               %a#sparql-btn{ :href => "/sparql" }
                 = fa_icon "question-circle", class: "white", text: "SPARQL"
@@ -63,6 +63,13 @@
               %button.btn.btn-default{ :type => "submit" } 
                 = fa_icon "search", text: "検索"
     = yield
+    %footer.footer
+      .container
+        %p
+          Fumihiro Kato
+          %a{ :rel => "license", :href => "http://creativecommons.org/licenses/by-sa/4.0/" }
+            %img{ :style => "border-width: 0", :src => "https://i.creativecommons.org/l/by-sa/4.0/80x15.png", :alt => "Creative Commons Attribution-ShareAlike 4.0 International License" }
+          
     #aboutModal.modal.fade{:role => "dialog", :tabindex => "-1"}
       .modal-dialog.modal-lg
         .modal-content
@@ -98,10 +105,13 @@
                   また，試験的に30カ所近くの公園に設置されている看板の写真を撮影しており，
                   %a{ :href => "https://www.flickr.com/photos/fumihirokato/sets/72157649508418932/", :target => "_blank" } Flickrに公開
                   して利用しています．
-                  今後は看板の写真から公園での禁止事項をおこして提供する予定です．
                 %p
                   公園例:
-                  %a{ :href => "http://yokohama.openpark.jp/parks/寺前さざなみ公園" } 寺前さざなみ公園
+                  %ul
+                    %li
+                      %a{ :href => "http://yokohama.openpark.jp/parks/海の公園" } 海の公園
+                    %li
+                      %a{ :href => "http://yokohama.openpark.jp/parks/寺前さざなみ公園" } 寺前さざなみ公園
                 .panel.panel-primary
                   .panel-heading データソース
                   %ul.list-group
@@ -122,57 +132,68 @@
                     %li.list-group-item
                       %a{ :href => "https://www.flickr.com/photos/fumihirokato/sets/72157649508418932/", :target => "_blank" } 横浜市金沢区 - Flickr
                 %p
-                  作成者: Fumihiro Kato (
+                  作者: Fumihiro Kato (
                   %a{ :href => "https//twitter.com/fumi1" } @fumi1
                   )
+                  %br
+                  当サイトで提供しているデータは
+                  %a{ :rel => "license", :href => "http://creativecommons.org/licenses/by-sa/4.0/" }
+                    %img{ :style => "border-width: 0", :src => "https://i.creativecommons.org/l/by-sa/4.0/88x31.png", :alt => "クリエイティブ・コモンズ・ライセンス" }
+                    クリエイティブ・コモンズ 表示 - 継承 4.0 国際 ライセンス
+                  のもとでライセンスされます．
                   
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
-    #equipmentTypeModal.modal.fade{:role => "dialog", :tabindex => "-1"}
+    #equipmentSearchModal.modal.fade{:role => "dialog", :tabindex => "-1"}
       .modal-dialog
         .modal-content
           .modal-header
             %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
-            %h4.modal-title 遊具種類検索
+            %h4.modal-title 遊具検索
           .modal-body
-            %form{ :role => "form", :action => "/search" }
-              .form-inline
-                %select#equipmentType.form-control{ :name => "equipmentType" }
-                  %option 全て
-                  %option 砂場
-                  %option ブランコ
-                  %option 健康遊具
-                  %option 鉄棒
-                  %option すべり台
-                  %option スプリング遊具
-                  %option 鋼製複合遊具
-                  %option その他遊具
-                  %option コンクリート遊具
-                  %option ジャングルジム
-                  %option プレイスカルプチュア
-                  %option クライム遊具
-                  %option バスケットゴール
-                  %option スウィング遊具
-                  %option シーソー
-                  %option 幼児用遊具樹脂製球体
-                  %option 鋼製遊具
-                  %option ローラーすべり台
-                  %option 砂場テーブル
-                  %option うんてい
-                  %option ターザンロープ
-                  %option 水遊場
-                  %option ふみいたストレッチ
-                  %option ぶらさがり
-                  %option 木製遊具
-                  %option 背伸ばしベンチ
-                  %option コンクリート製複合遊具
-                  %option ザイルクライム
-                  %option ブランコマット
-                  %option 遊具説明板
-                %button.btn.btn-primary{ :type => "submit" } 検索            
+            %form.form-horizontal{ :role => "form", :action => "/search" }
+              .form-group
+                %label#equipmentTypeLabel.control-label.col-sm-2{ :for => "equipmentType" } 種類
+                .col-sm-4
+                  %select#equipmentType.form-control{ :name => "equipmentType" }
+                    %option 全て
+                    %option 砂場
+                    %option ブランコ
+                    %option 健康遊具
+                    %option 鉄棒
+                    %option すべり台
+                    %option スプリング遊具
+                    %option 鋼製複合遊具
+                    %option その他遊具
+                    %option コンクリート遊具
+                    %option ジャングルジム
+                    %option プレイスカルプチュア
+                    %option クライム遊具
+                    %option バスケットゴール
+                    %option スウィング遊具
+                    %option シーソー
+                    %option 幼児用遊具樹脂製球体
+                    %option 鋼製遊具
+                    %option ローラーすべり台
+                    %option 砂場テーブル
+                    %option うんてい
+                    %option ターザンロープ
+                    %option 水遊場
+                    %option ふみいたストレッチ
+                    %option ぶらさがり
+                    %option 木製遊具
+                    %option 背伸ばしベンチ
+                    %option コンクリート製複合遊具
+                    %option ザイルクライム
+                    %option ブランコマット
+                    %option 遊具説明板
+              .form-group    
+                %label#ageLabel.control-label.col-sm-2{ :for => "age" } 対象年齢
+                .col-sm-4
+                  %input#age.form-control{ :type => "number", :name => "age", :min => "0", :value => "3", :required => "required" }
+              %button.btn.btn-primary{ :type => "submit" } 検索            
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
-
     :javascript
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
