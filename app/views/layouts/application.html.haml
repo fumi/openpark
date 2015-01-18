@@ -63,6 +63,13 @@
               %button.btn.btn-default{ :type => "submit" } 
                 = fa_icon "search", text: "検索"
     = yield
+    %footer.footer
+      .container
+        %p
+          Fumihiro Kato
+          %a{ :rel => "license", :href => "http://creativecommons.org/licenses/by-sa/4.0/" }
+            %img{ :style => "border-width: 0", :src => "https://i.creativecommons.org/l/by-sa/4.0/80x15.png", :alt => "Creative Commons Attribution-ShareAlike 4.0 International License" }
+          
     #aboutModal.modal.fade{:role => "dialog", :tabindex => "-1"}
       .modal-dialog.modal-lg
         .modal-content
@@ -101,7 +108,11 @@
                   今後は看板の写真から公園での禁止事項をおこして提供する予定です．
                 %p
                   公園例:
-                  %a{ :href => "http://yokohama.openpark.jp/parks/寺前さざなみ公園" } 寺前さざなみ公園
+                  %ul
+                    %li
+                      %a{ :href => "http://yokohama.openpark.jp/parks/海の公園" } 海の公園
+                    %li
+                      %a{ :href => "http://yokohama.openpark.jp/parks/寺前さざなみ公園" } 寺前さざなみ公園
                 .panel.panel-primary
                   .panel-heading データソース
                   %ul.list-group
@@ -122,7 +133,11 @@
                     %li.list-group-item
                       %a{ :href => "https://www.flickr.com/photos/fumihirokato/sets/72157649508418932/", :target => "_blank" } 横浜市金沢区 - Flickr
                 %p
-                  作成者: Fumihiro Kato (
+                  当サイトで提供しているデータは
+                  %a{ :rel => "license", :href => "http://creativecommons.org/licenses/by-sa/4.0/" }
+                    %img{ :style => "border-width: 0", :src => "https://i.creativecommons.org/l/by-sa/4.0/88x31.png", :alt => "クリエイティブ・コモンズ・ライセンス" }
+                    クリエイティブ・コモンズ 表示 - 継承 4.0 国際 ライセンス
+                  Created by Fumihiro Kato (
                   %a{ :href => "https//twitter.com/fumi1" } @fumi1
                   )
                   
