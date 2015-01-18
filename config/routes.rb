@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   get 'search' => 'search#index'
 
+  get 'data/parks/:id' => 'data#show_park'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
