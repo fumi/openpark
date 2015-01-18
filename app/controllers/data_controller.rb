@@ -16,9 +16,6 @@ class DataController < ApplicationController
   def dump_rdf(format, uri)
     client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
     sparql_result = client.query("DESCRIBE <#{uri}>")
-    puts sparql_result
-    #graph = RDF::Graph.new 
-    #graph << RDF::Statement.new(RDF::Node.new, RDF::DC.title, "Hello, World")
     sparql_result.dump(format, :standard_prefixes => true, :prefixes => PREFIXES)
   end
 end
