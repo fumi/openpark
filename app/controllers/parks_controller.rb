@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class ParksController < ApplicationController
-  def view
+  def show
     park_uri = PREFIXES[:park_resource].dup + params[:id]
     client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
     
