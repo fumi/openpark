@@ -16,7 +16,7 @@
 //= require leaflet
 //= require leaflet.markercluster
 //= require galleria
-//= require galleria.classic.min
+//= require galleria.classic
 //= require galleria.flickr
 //= require leaflet-locatecontrol/leaflet.locatecontrol
 //= require leaflet-groupedlayercontrol/leaflet.groupedlayercontrol
