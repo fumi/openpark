@@ -11,7 +11,7 @@
     .panel.panel-primary
       .panel-heading Linked Data
       .panel-body
-        %p 個々の公園データはLinked Dataとして提供しています．Entity IRIにアクセスすると，指定したメディアタイプか拡張子に合わせて303 See Otherでリダイレクトします．
+        %p 個々の公園データはLinked Dataとして提供しています．Entity IRIにアクセスすると，指定したメディアタイプか拡張子に合わせて303 See Otherでリダイレクトします．Data IRIはCORSに対応しています。
         %ul
           %li Entity IRI: http://yokohama.openpark.jp/parks/[park name]
           %li Data IRI: http://yokohama.openpark.jp/data/parks/[park name]
@@ -51,7 +51,7 @@
     .panel.panel-primary
       .panel-heading SPARQL
       .panel-body
-        %p Linked Dataとして提供しているデータは，SPARQLでもアクセス可能です．
+        %p Linked Dataとして提供しているデータは，SPARQLでもアクセス可能です．/sparql以下はCORSに対応しています。
         %ul
           %li
             %a{ :href => "/sparql" } 公開エンドポイント
