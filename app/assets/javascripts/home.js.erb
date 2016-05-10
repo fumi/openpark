@@ -1,50 +1,50 @@
 $(function(){
   var map, featureList, parkSearch = [], boundarySearch = [];
-  
+
   $(document).on("click", ".feature-row", function(e) {
     sidebarClick(parseInt($(this).attr("id"), 10));
   });
-  
+
   $("#about-btn").click(function() {
     $("#aboutModal").modal("show");
     $(".navbar-collapse.in").collapse("hide");
     return false;
   });
-  
+
   $("#list-btn").click(function() {
     $('#sidebar').toggle();
     map.invalidateSize();
     return false;
   });
-  
+
   $("#equipment-search-btn").click(function() {
     $("#equipmentSearchModal").modal("show");
     $(".navbar-collapse.in").collapse("hide");
     return false;
   });
-  
+
   $("#age-limit-btn").click(function() {
     $("#ageLimitModal").modal("show");
     $(".navbar-collapse.in").collapse("hide");
     return false;
   });
-  
+
   $("#nav-btn").click(function() {
     $(".navbar-collapse").collapse("toggle");
     return false;
   });
-  
+
   $("#sidebar-toggle-btn").click(function() {
     $("#sidebar").toggle();
     map.invalidateSize();
     return false;
   });
-  
+
   $("#sidebar-hide-btn").click(function() {
     $('#sidebar').hide();
     map.invalidateSize();
   });
-  
+
   function sidebarClick(id) {
     map.addLayer(parkLayer);
     var layer = markerClusters.getLayer(id);
@@ -56,7 +56,7 @@ $(function(){
       map.invalidateSize();
     }
   }
-  
+
   /* Basemap Layers */
   var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
     maxZoom: 19,
@@ -81,12 +81,12 @@ $(function(){
     maxZoom: 18,
     attribution: "<a href='http://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html' target='_blank'>国土地理院</a>"
   });
-  
+
   var cyberjapanPale = L.tileLayer("http://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png", {
     maxZoom: 18,
     attribution: "<a href='http://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html' target='_blank'>国土地理院</a>"
   });
-  
+
   /* Overlay Layers */
   var highlight = L.geoJson(null);
 
@@ -108,10 +108,10 @@ $(function(){
       });
     }
   });
-  $.getJSON("/static_data/boundary-kanazawa-ku.geojson", function (data) {
+  /*$.getJSON("/static_data/boundary-kanazawa-ku.geojson", function (data) {
     boundaries.addData(data);
-  });
-    
+  });*/
+
   /* Single marker cluster layer to hold all clusters */
   var markerClusters = new L.MarkerClusterGroup({
     spiderfyOnMaxZoom: true,
@@ -119,7 +119,7 @@ $(function(){
     zoomToBoundsOnClick: true,
     disableClusteringAtZoom: 16
   });
-  
+
   /* Empty layer placeholder to add to layer control for listening when to add/remove parks to markerClusters layer */
   var parkLayer = L.geoJson(null);
   var parks = L.geoJson(null, {
@@ -163,7 +163,7 @@ $(function(){
       }
     }
   });
-  $.getJSON("/parks/all/geojson", function (data) {
+  $.getJSON("/parks/all_geojson", function (data) {
     if(map != null) {
       parks.addData(data);
       map.addLayer(parkLayer);
@@ -177,25 +177,25 @@ $(function(){
     zoomControl: false,
     attributionControl: true
   });
-  
+
   /* Layer control listeners that allow for a single markerClusters layer */
   map.on("overlayadd", function(e) {
     if (e.layer === parkLayer) {
       markerClusters.addLayer(parks);
     }
   });
-  
+
   map.on("overlayremove", function(e) {
     if (e.layer === parkLayer) {
       markerClusters.removeLayer(parks);
     }
   });
-  
+
   /* Clear feature highlight when map is clicked */
   map.on("click", function(e) {
     highlight.clearLayers();
   });
-  
+
   /* GPS enabled geolocation control set to follow the user's location */
   var locateControl = L.control.locate({
     position: "topleft",
@@ -227,38 +227,38 @@ $(function(){
       timeout: 10000
     }
   }).addTo(map);
-  
+
   var zoomControl = L.control.zoom({
     position: "topleft"
   }).addTo(map);
-  
+
   /* Larger screens get expanded layer control and visible sidebar */
   var isCollapsed = false;
   if (document.body.clientWidth <= 767) {
     isCollapsed = true;
   }
-  
+
   var baseLayers = {
     "地理院標準地図": cyberjapanStd,
     "地理院淡色地図": cyberjapanPale,
     "Mapquest OSM": mapquestOSM,
   };
-  
+
   var groupedOverlays = {
     "POI": {
-      "<img src='<%= asset_path('marker-icon.png') %>' width='24' height='28'>&nbsp;公園": parkLayer
+      "<img src='<%= asset_path('marker-icon.png') %>' width='24' height='30'>&nbsp;公園": parkLayer
     }
   };
-  
+
   var layerControl = L.control.groupedLayers(baseLayers, groupedOverlays, {
     collapsed: isCollapsed
   }).addTo(map);
-  
+
   /* Highlight search box text on click */
   $("#searchbox").click(function () {
     $(this).select();
   });
-  
+
   /* Typeahead search functionality */
   $(document).one("ajaxStop", function () {
     $("#loading").hide();
@@ -266,7 +266,7 @@ $(function(){
     map.fitBounds(boundaries.getBounds());
     featureList = new List("features", {valueNames: ["feature-name"]});
     featureList.sort("feature-name", {order:"asc"});
-  
+
     var boundariesBH = new Bloodhound({
       name: "Boundaries",
       datumTokenizer: function (d) {
@@ -276,7 +276,7 @@ $(function(){
       local: boundarySearch,
       limit: 10
     });
-      
+
     var parksBH = new Bloodhound({
       name: "公園",
       datumTokenizer: function (d) {
@@ -286,10 +286,10 @@ $(function(){
       local: parkSearch,
       limit: 10
     });
-  
+
     boundariesBH.initialize();
     parksBH.initialize();
-  
+
     /* instantiate the typeahead UI */
     $("#searchbox").typeahead({
       minLength: 3,

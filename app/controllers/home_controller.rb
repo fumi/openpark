@@ -2,16 +2,16 @@
 class HomeController < ApplicationController
   def index
     client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
-    query = """PREFIX geo: <#{RDF::GEO.to_s}>
-PREFIX rdfs: <#{RDF::RDFS.to_s}>
-PREFIX schema: <#{RDF::SCHEMA.to_s}>
+    query = """PREFIX ic: <#{PREFIXES[:ic]}>
 
 SELECT ?park ?label ?lat ?long
 WHERE {
-  ?park a schema:Park ;
-    rdfs:label ?label ;
-    geo:lat ?lat ;
-    geo:long ?long .
+  ?park a ic:施設型 ;
+    ic:名称/ic:表記 ?label ;
+    ic:地理識別子 [
+      ic:経度 ?lat ;
+      ic:緯度 ?long
+    ] .
 }
     """
     results = client.query(query)

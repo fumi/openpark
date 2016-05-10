@@ -2,12 +2,8 @@
 class SearchController < ApplicationController
   def index
     client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
-    prefixes = """PREFIX geo: <#{RDF::GEO.to_s}>
-PREFIX rdfs: <#{RDF::RDFS.to_s}>
-PREFIX schema: <#{RDF::SCHEMA.to_s}>
-PREFIX ic: <#{IC.to_s}>
+    prefixes = """PREFIX ic: <#{IC.to_s}>
 PREFIX park: <#{PARK.to_s}>
-PREFIX dcterms: <#{RDF::DC.to_s}>
 """
 
     if (params[:equipmenType] and !params[:equipmentType].empty?) ||
@@ -20,29 +16,31 @@ PREFIX dcterms: <#{RDF::DC.to_s}>
 """
 SELECT DISTINCT ?park ?parkLabel ?postalCode ?address ?lat ?long ?equipment ?equipmentLabel ?age_max ?age_min
 WHERE {
-  ?park a park:公園 ;
-    rdfs:label ?parkLabel ;
-    ic:地点_設備 ?equipment ;
-    ic:地点_場所/ic:場所_住所 [
-      ic:住所_郵便番号 ?postalCode ;
-      ic:住所_表記 ?address 
+  ?park a ic:施設 ;
+    ic:名称/ic:表記 ?parkLabel ;
+    ic:設備 ?equipment ;
+    ic:住所 [
+      ic:郵便番号 ?postalCode ;
+      ic:表記 ?address
     ] ;
-    geo:lat ?lat ;
-    geo:long ?long .
-  ?equipment rdfs:label ?equipmentLabel .
+    ic:地理識別子 [
+      ic:経度 ?lat ;
+      ic:緯度 ?long
+    ] .
+  ?equipment ic:名称/ic:表記 ?equipmentLabel .
 """
       unless  equipment_type.match("全て")
-        query << "  ?equipment dcterms:subject park:#{equipment_type} ."
+        query << "  ?equipment ic:種別 \"#{equipment_type}\"@ja ."
       end
 
   query << """
   OPTIONAL {
     ?equipment park:年齢上限 ?age_max .
-  FILTER (?age_max > #{age})
+    FILTER (?age_max >= #{age})
   }
   OPTIONAL {
     ?equipment park:年齢下限 ?age_min .
-    FILTER (?age_min < #{age})
+    FILTER (?age_min <= #{age})
   }
 }
 ORDER BY ?parkLabel
@@ -57,15 +55,17 @@ ORDER BY ?parkLabel
 """
 SELECT DISTINCT ?park ?parkLabel ?postalCode ?address ?lat ?long
 WHERE {
-  ?park a park:公園 ;
-    rdfs:label ?parkLabel ;
-    ic:地点_場所/ic:場所_住所 [
-      ic:住所_郵便番号 ?postalCode ;
-      ic:住所_表記 ?address 
+  ?park a ic:施設型 ;
+    ic:名称/ic:表記 ?parkLabel ;
+    ic:住所 [
+      ic:郵便番号 ?postalCode ;
+      ic:表記 ?address
     ] ;
-    geo:lat ?lat ;
-    geo:long ?long .
-  FILTER regex(?parkLabel, '#{text}')
+    ic:地理識別子 [
+      ic:経度 ?lat ;
+      ic:緯度 ?long
+    ] .
+    FILTER regex(?parkLabel, '#{text}')
 }
 ORDER BY ?parkLabel
 """

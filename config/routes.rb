@@ -7,13 +7,13 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  get 'parks/:id' => 'parks#show'
+  get 'parks/all_geojson' => 'parks#all_geojson'
 
-  get 'parks/all/geojson' => 'parks#all_geojson'
+  get 'parks/:government_id/:park_id' => 'parks#show'
 
   get 'search' => 'search#index'
 
-  get 'data/parks/:id' => 'data#show_park'
+  get 'data/parks/:government_id/:park_id' => 'data#show_park'
 
   get 'api' => 'api#index'
 
