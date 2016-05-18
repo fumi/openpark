@@ -1,0 +1,70 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          unicorn_openpark.jp
+# Required-Start:    $all
+# Required-Stop:     $network $local_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: starts the redmine web server
+# Description:       starts redmine
+### END INIT INFO
+
+USER=fumi
+APP_PATH=/opt/openpark
+RAILS_ENV=production
+URI_PATH=/
+
+SET_PATH="cd $APP_PATH"
+DAEMON="bundle exec unicorn_rails"
+DAEMON_OPTS="-c $APP_PATH/config/unicorn.rb -E $RAILS_ENV -D --path $URI_PATH"
+CMD="$SET_PATH; $DAEMON $DAEMON_OPTS"
+NAME=unicorn_openpark.jp
+DESC="Unicorn app for Open Park"
+PID="$APP_PATH/tmp/unicorn.pid"
+OLD_PID="$PID.oldbin"
+
+cd $APP_PATH || exit 1
+
+sig () {
+        test -s "$PID" && kill -$1 `cat $PID`
+}
+
+oldsig () {
+        test -s $OLD_PID && kill -$1 `cat $OLD_PID`
+}
+
+case ${1-help} in
+start)
+        sig 0 && echo >&2 "Already running" && exit 0
+        su - $USER -c "$CMD"
+        ;;
+stop)
+        sig QUIT && exit 0
+        echo >&2 "Not running"
+        ;;
+force-stop)
+        sig TERM && exit 0
+        echo >&2 "Not running"
+        ;;
+restart|reload)
+        sig HUP && echo reloaded OK && exit 0
+        echo >&2 "Couldn't reload, starting '$CMD' instead"
+        su - $USER -c "$CMD"
+        ;;
+upgrade)
+        sig USR2 && exit 0
+        echo >&2 "Couldn't upgrade, starting '$CMD' instead"
+        su - $USER -c "$CMD"
+        ;;
+rotate)
+        sig USR1 && echo rotated logs OK && exit 0
+        echo >&2 "Couldn't rotate logs" && exit 1
+        ;;
+*)
+        echo >&2 "Usage: $0 <start|stop|restart|upgrade|rotate|force-stop>"
+        exit 1
+        ;;
+esac
+
+exit 0
