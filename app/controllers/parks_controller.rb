@@ -27,7 +27,6 @@ WHERE {
     ] .
 }
     """
-    puts query
     results = client.query(query)
 
     render :json => view_context.to_geojson_from_sparql_results(results)
@@ -55,8 +54,8 @@ WHERE {
     ic:郵便番号 ?postalcode ;
   ] ;
   ic:地理識別子 [
-    ic:経度 ?lat ;
-    ic:緯度 ?long
+    ic:経度 ?long ;
+    ic:緯度 ?lat
   ] .
   OPTIONAL {
     <#{park_uri}> ic:説明 ?description .
