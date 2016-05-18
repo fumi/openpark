@@ -1,27 +1,4 @@
 #container
-  #sidebar
-    .sidebar-wrapper
-      #features.panel.panel-default
-        .panel-heading
-          %h3.panel-title
-            公園マップ
-        .panel-body
-          %p
-            .row
-              .col-xs-8.col-md-8
-                %input.form-control.search{:placeholder => "Filter", :type => "text"}/
-              .col-xs-4.col-md-4
-                %button#sort-btn.btn.btn-primary.pull-right.sort{"data-sort" => "feature-name", :type => "button"}
-                  = fa_icon "sort"
-                  \&nbsp;&nbsp;Sort
-        .sidebar-table
-          %table#feature-list.table.table-hover
-            %thead.hidden
-              %tr
-                %th Icon
-                %th Name
-                %th Chevron
-            %tbody.list
   #map
 #loading
   .loading-indicator
