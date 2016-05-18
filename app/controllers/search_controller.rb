@@ -24,8 +24,8 @@ WHERE {
       ic:表記 ?address
     ] ;
     ic:地理識別子 [
-      ic:経度 ?lat ;
-      ic:緯度 ?long
+      ic:経度 ?long ;
+      ic:緯度 ?lat
     ] .
   ?equipment ic:名称/ic:表記 ?equipmentLabel .
 """
@@ -62,8 +62,8 @@ WHERE {
       ic:表記 ?address
     ] ;
     ic:地理識別子 [
-      ic:経度 ?lat ;
-      ic:緯度 ?long
+      ic:経度 ?long ;
+      ic:緯度 ?lat
     ] .
     FILTER regex(?parkLabel, '#{text}')
 }
