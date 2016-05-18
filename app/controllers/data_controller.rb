@@ -1,7 +1,13 @@
 class DataController < ApplicationController
 
   def show_park
-    uri = PREFIXES[:park_resource].dup + params[:id]
+    params.permit(:government_id, :park_id)
+    not_found unless params[:government_id] and params[:park_id]
+    government_id = CGI.unescape(params[:government_id])
+    park_id = CGI.unescape(params[:park_id])
+    puts government_id, park_id
+
+    uri = PREFIXES[:park_resource].dup + government_id + '/' + park_id
     respond_to do |format|
       format.ttl { @result = dump_rdf(:ttl, uri) }
       format.rdf { @result = dump_rdf(:rdf, uri) }
