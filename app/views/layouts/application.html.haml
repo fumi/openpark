@@ -13,7 +13,6 @@
     = javascript_include_tag 'application'
     %script{ :src => "//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js" }
     %script{ :src => "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js" }
-    %script{ :src => "//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js" }
     %script{ :src => "//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js" }
     %link{ :href => "#{asset_path('bootleaf/favicon-76.png')}", :rel => "apple-touch-icon", :sizes => "76x76"}
     %link{ :href => "#{asset_path('bootleaf/favicon-120.png')}", :rel => "apple-touch-icon", :sizes => "120x120"}
@@ -21,7 +20,7 @@
     %link{ :href => "#{asset_path('bootleaf/favicon-196.png')}", :rel => "icon", :sizes => "196x196"}
     %link{ :href => "#{asset_path('bootleaf/favicon.ico')}", :rel => "icon", :type => "image/x-icon"}
     = csrf_meta_tags
-    %title Open Park Yokohama
+    %title Open Park
     = yield :head
     :css
       body { padding-top: 70px; }
@@ -34,7 +33,7 @@
               = fa_icon "bars lg", class: "white"
             %a#sidebar-toggle-btn.navbar-icon.pull-right.visible-xs{:href => "#"}
               = fa_icon "search lg", class: "white"
-          %a.navbar-brand{ :href => "/" }  Open Park Yokohama
+          %a.navbar-brand{ :href => "/" }  Open Park
         .navbar-collapse.collapse
           %ul.nav.navbar-nav
             %li
@@ -60,7 +59,7 @@
           %form.navbar-form.navbar-right{ :role => "search", :action => "/search" }
             .form-group
               %input#text.form-control{ :name => "text", :type => "text", :placeholder => "野島" }
-              %button.btn.btn-default{ :type => "submit" } 
+              %button.btn.btn-default{ :type => "submit" }
                 = fa_icon "search", text: "検索"
     = yield
     #aboutModal.modal.fade{:role => "dialog", :tabindex => "-1"}
@@ -68,7 +67,7 @@
         .modal-content
           .modal-header
             %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
-            %h4.modal-title Open Park Yokohamaについて
+            %h4.modal-title Open Parkについて
           .modal-body
             %ul#aboutTabs.nav.nav-tabs
               %li.active
@@ -78,7 +77,7 @@
             #aboutTabsContent.tab-content
               #about.tab-pane.fade.active.in
                 %p
-                  Open Park Yokohamaは市民が公園をもっと有効に活用できるように公園に関連するデータを整理して再公開するサイトです．
+                  Open Parkは市民が公園をもっと有効に活用できるように公園に関連するデータを整理して再公開するサイトです．
                   公園は市民の活動や憩いの場であるはずですが，一方で公園にある遊具の安全性や，禁止事項が多すぎる公園などが
                   社会問題として取り上げられたりもしています．
                   大きな都市公園や運動公園などについては用途による検索ができるサイトが既にありますが，
@@ -91,10 +90,7 @@
                   %a{ :href => "http://www.city.yokohama.lg.jp/kanazawa/kz-opendata/", :target => "_blank" } 金沢区オープンデータ
                   のデータをもとに加工して利用しており，公園名や遊具などで公園を探すことができます．
                   語彙は
-                  %a{ :href => "http://imi.ipa.go.jp/ns/core/210/" } 共通語彙基盤 コア語彙 2.10
-                  や
-                  %a{ :href => "http://schema.org" } Schema.org
-                  をベースに一部独自語彙を作成しています．
+                  %a{ :href => "http://imi.ipa.go.jp/ns/core/rdf" } 共通語彙基盤 コア語彙 2.3.1をベースに一部独自語彙を作成しています．
                   また，試験的に30カ所近くの公園に設置されている看板の写真を撮影しており，
                   %a{ :href => "https://www.flickr.com/photos/fumihirokato/sets/72157649508418932/", :target => "_blank" } Flickrに公開
                   して利用しています．
@@ -115,7 +111,7 @@
                     %li.list-group-item
                       %a{ :href => "http://www.city.yokohama.lg.jp/kanazawa/kz-opendata/data/4-kz-doboku.csv", :target => "_blank" } 横浜市金沢区役所 公園遊具リスト
                     %li.list-group-item
-                      %a{ :href => "http://imi.ipa.go.jp/ns/core/210/", :target => "_blank" } IPA 共通語彙基盤 コア語彙 2.10
+                      %a{ :href => "http://imi.ipa.go.jp/ns/core/rdf", :target => "_blank" } IPA 共通語彙基盤 コア語彙 2.3.1
                     %li.list-group-item
                       %a{ :href => "http://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html", :target => "_blank" } 国土交通省 国土地理院 地理院地図
                     %li.list-group-item
@@ -139,7 +135,7 @@
                     %img{ :style => "border-width: 0", :src => "https://i.creativecommons.org/l/by-sa/4.0/88x31.png", :alt => "クリエイティブ・コモンズ・ライセンス" }
                     クリエイティブ・コモンズ 表示 - 継承 4.0 国際 ライセンス
                   のもとでライセンスされます．
-                  
+
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
     #equipmentSearchModal.modal.fade{:role => "dialog", :tabindex => "-1"}
@@ -185,11 +181,11 @@
                     %option ザイルクライム
                     %option ブランコマット
                     %option 遊具説明板
-              .form-group    
+              .form-group
                 %label#ageLabel.control-label.col-sm-2{ :for => "age" } 対象年齢
                 .col-sm-4
                   %input#age.form-control{ :type => "number", :name => "age", :min => "0", :value => "3", :required => "required" }
-              %button.btn.btn-primary{ :type => "submit" } 検索            
+              %button.btn.btn-primary{ :type => "submit" } 検索
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
     :javascript
