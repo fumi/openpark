@@ -16,16 +16,15 @@ module ApplicationHelper
       end
       json["features"] << tmp
     end
-    puts json
     json
   end
 
   def to_geojson_from_sparql_results_bak(results)
     str = '{ "type": "FeatureCollection",\n  \"features\": [\n'
-    
+
     results.each do |result|
       str << '    { "type": "Feature",\n'
-      str << '      "geometry":{ "type": "Point", "coordinates": [#{result[:long]}, #{result[:lat]}] }\n' 
+      str << '      "geometry":{ "type": "Point", "coordinates": [#{result[:long]}, #{result[:lat]}] }\n'
       str << '      "properties": { '
       result.each do |key, value|
         str << '"#{key}": "#{value}", '
@@ -37,7 +36,7 @@ module ApplicationHelper
     str.to_json
   end
   # Original is map function of Leaflet::ViewHelpers
-  # 
+  #
   # Copyright (c) 2010-2013, Vladimir Agafonkin
   # Copyright (c) 2010-2011, CloudMade
   # Copyright (c) 2012-2013, Akshay Joshi
@@ -68,7 +67,7 @@ module ApplicationHelper
     options[:max_zoom] ||= Leaflet.max_zoom
     options[:subdomains] ||= Leaflet.subdomains
     options[:container_id] ||= 'map'
-    
+
     tile_layer = options.delete(:tile_layer) || Leaflet.tile_layer
     attribution = options.delete(:attribution) || Leaflet.attribution
     max_zoom = options.delete(:max_zoom) || Leaflet.max_zoom
@@ -80,12 +79,12 @@ module ApplicationHelper
     circles = options.delete(:circles)
     polylines = options.delete(:polylines)
     fitbounds = options.delete(:fitbounds)
-    
+
     output = []
     output << "<div id='#{container_id}'></div>" unless no_container
     output << "<script>"
     output << "var map = L.map('#{container_id}')"
-    
+
     if center
       output << "map.setView([#{center[:latlng][0]}, #{center[:latlng][1]}], #{center[:zoom]})"
     end
@@ -93,17 +92,17 @@ module ApplicationHelper
     output << "L.tileLayer('#{tile_layer}', {
           attribution: '#{attribution}',
           maxZoom: #{max_zoom},"
-    
+
     if options[:subdomains]
       output << "    subdomains: #{options[:subdomains]},"
       options.delete( :subdomains )
     end
-    
+
     options.each do |key, value|
       output << "#{key.to_s.camelize(:lower)}: '#{value}',"
     end
     output << "}).addTo(map)"
-    
+
     if markers
       if cluster
         puts "Cluster: #{cluster}"
@@ -116,7 +115,7 @@ module ApplicationHelper
           output << "marker = L.marker([#{marker[:latlng][0]}, #{marker[:latlng][1]}], {icon: #{icon_settings[:name]}#{index}})"
         else
           output << "marker = L.marker([#{marker[:latlng][0]}, #{marker[:latlng][1]}])"
-        end          
+        end
         if marker[:popup]
           output << "marker.bindPopup('#{marker[:popup]}')"
         end
@@ -130,7 +129,7 @@ module ApplicationHelper
         output << "map.addLayer(cluster)"
       end
     end
-    
+
     if circles
       circles.each do |circle|
         output << "L.circle(['#{circle[:latlng][0]}', '#{circle[:latlng][1]}'], #{circle[:radius]}, {
@@ -140,7 +139,7 @@ module ApplicationHelper
         }).addTo(map);"
       end
     end
-    
+
     if polylines
       polylines.each do |polyline|
         _output = "L.polyline(#{polyline[:latlngs]}"
@@ -149,15 +148,15 @@ module ApplicationHelper
         output << _output.gsub(/\n/,'')
       end
     end
-    
+
     if fitbounds
       output << "map.fitBounds(L.latLngBounds(#{fitbounds}));"
     end
-    
+
     output << "</script>"
     output.join("\n").html_safe
   end
-  
+
   private
 
   def prep_icon_settings(settings)

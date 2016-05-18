@@ -29,7 +29,7 @@
         %p= @park[:description]
       %p= "住所: 〒#{@park[:postalcode]} #{@park[:address]}"
       %p= "座標: #{@park[:lat]},#{@park[:long]}"
-      - if @equipment_solutions.count > 0      
+      - if @equipment_solutions.count > 0
         .row
           - @equipment_solutions.each do |equipment|
             .col-xs-12.col-md-4
@@ -44,7 +44,7 @@
                     - if equipment[:equipment_spec]
                       %tr
                         %th 仕様・規格
-                        %td= equipment[:user]            
+                        %td= equipment[:user]
                     %tr
                       %th 管理者
                       %td= equipment[:organization_label]
@@ -55,11 +55,11 @@
                       %tr
                         %th 利用者
                         %td= equipment[:user]
-                    
-        
+
+
   .row
     .col-xs-12.col-md-offset-1.col-md-4
-      = map_to_leaflet(:container_id => "map_park", :center => { :latlng => [@park[:lat], @park[:long]], :zoom => 16 }, :markers => @markers )
+      = map_to_leaflet(:container_id => "map_park", :center => { :latlng => [@park[:lat], @park[:long]], :zoom => 14 }, :markers => @markers )
     .col-xs-12.col-md-4
       #galleria
         :javascript
