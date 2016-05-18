@@ -22,8 +22,8 @@ WHERE {
   ?park a ic:施設型 ;
     ic:名称/ic:表記 ?label ;
     ic:地理識別子 [
-      ic:経度 ?lat ;
-      ic:緯度 ?long
+      ic:経度 ?long ;
+      ic:緯度 ?lat
     ] .
 }
     """
