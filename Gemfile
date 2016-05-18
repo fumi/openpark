@@ -33,6 +33,7 @@ end
 group :development do
   gem 'erb2haml'
   gem 'spring'
+  gem 'shotgun'
 end
 
 group :development, :test do

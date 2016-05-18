@@ -249,6 +249,8 @@ GEM
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
     sexp_processor (4.7.0)
+    shotgun (0.9.1)
+      rack (>= 1.0)
     sparql (2.0.0)
       builder (~> 3.2)
       ebnf (~> 1.0, >= 1.0.1)
@@ -317,6 +319,7 @@ DEPENDENCIES
   rspec
   rspec-rails
   sass-rails (~> 4.0.5)
+  shotgun
   sparql
   sparql-client
   spira
@@ -327,4 +330,4 @@ DEPENDENCIES
   unicorn
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
