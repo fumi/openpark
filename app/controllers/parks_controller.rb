@@ -61,7 +61,6 @@ WHERE {
 }
 LIMIT 1
 """
-  puts park_query
     solution = client.query(park_query)
     @markers = []
     solution.each do |solution|
@@ -94,7 +93,6 @@ WHERE {
   }
 }
 """
-    puts equipment_query
     @equipment_solutions = client.query(equipment_query)
 
   end
