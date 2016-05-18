@@ -1,22 +1,22 @@
 #container
   .col-sm-offset-2.col-sm-8
-    %h3 Open Park Yokohama API
-    %p Open Park Yokohamaでは，データアクセス用に以下のAPIを用意しています．
+    %h3 Open Park API
+    %p Open Park では，データアクセス用に以下のAPIを用意しています．
     %p
-      ライセンス: Fumihiro Kato
+      ライセンス:
       %a{ :rel => "license", :href => "http://creativecommons.org/licenses/by-sa/4.0/" }
         %img{ :style => "border-width: 0", :src => "https://i.creativecommons.org/l/by-sa/4.0/80x15.png", :alt => "Creative Commons Attribution-ShareAlike 4.0 International License" }
     %p 本サイトで利用している元データについてはメニューからAboutを参照してください．
-      
+
     .panel.panel-primary
       .panel-heading Linked Data
       .panel-body
         %p 個々の公園データはLinked Dataとして提供しています．Entity IRIにアクセスすると，指定したメディアタイプか拡張子に合わせて303 See Otherでリダイレクトします．Data IRIはCORSに対応しています。
         %ul
-          %li Entity IRI: http://yokohama.openpark.jp/parks/[park name]
-          %li Data IRI: http://yokohama.openpark.jp/data/parks/[park name]
+          %li Entity IRI: http://openpark.jp/parks/[自治体コード5桁]/[park name]
+          %li Data IRI: http://openpark.jp/data/parks/[自治体コード5桁][park name]
           %li HTTP Method: GET
-          
+
         %table.table.table-hover
           %thead
             %tr
@@ -40,14 +40,14 @@
         %h4 例1: HTTP AcceptでJSON-LDのファイルを取得
         %pre
           %code
-            $ curl -LH 'Accept: application/ld+json' 'http://yokohama.openpark.jp/parks/海の公園'
-          
+            $ curl -LH 'Accept: application/ld+json' 'http://openpark.jp/parks/14108/海の公園'
+
         %h4 例2: Turtleのファイルを拡張子指定して直接取得
         %pre
           %code
-            $ curl 'http://yokohama.openpark.jp/data/parks/海の公園.ttl'
-      
-          
+            $ curl 'http://yokohama.openpark.jp/data/parks/14108/海の公園.ttl'
+
+
     .panel.panel-primary
       .panel-heading SPARQL
       .panel-body
