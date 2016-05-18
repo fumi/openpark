@@ -35,9 +35,7 @@ WHERE {
   protected
 
   def show_html(government_id, park_id)
-    puts PREFIXES[:park_resource], government_id, park_id
     park_uri = PREFIXES[:park_resource].dup + government_id + '/' + park_id
-    puts park_uri
     client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
 
     prefixes = """PREFIX ic: <#{PREFIXES[:ic]}>
