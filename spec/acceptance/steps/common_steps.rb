@@ -3,10 +3,6 @@ module CommonSteps
   step %(:pageページにアクセスする) do |page|
     visit page
   end
-
-  step %(:linkリンクをクリックする) do |link|
-    visit link
-  end
 end
 
-RSpec.configure { |c| c.include CommonSteps }
+RSpec.configure { |c| c.include CommonSteps, :common => true }

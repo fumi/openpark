@@ -33,7 +33,7 @@ require 'turnip/capybara'
 ActiveRecord::Migration.maintain_test_schema!
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, :js_errors => true, :timeout => 60)
+  Capybara::Poltergeist::Driver.new(app, :js_errors => false, :timeout => 60)
 end
 
 Capybara.configure do |config|
