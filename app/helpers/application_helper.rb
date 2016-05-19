@@ -105,7 +105,6 @@ module ApplicationHelper
 
     if markers
       if cluster
-        puts "Cluster: #{cluster}"
         output << "var cluster = L.markerClusterGroup()"
       end
       markers.each_with_index do |marker, index|

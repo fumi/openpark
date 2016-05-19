@@ -45,7 +45,6 @@ WHERE {
 }
 ORDER BY ?parkLabel
 """
-      puts query
       @parks = client.query(query)
 
     elsif params[:text] and !params[:text].empty?
