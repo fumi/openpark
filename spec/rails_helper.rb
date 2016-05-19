@@ -10,7 +10,6 @@ require 'capybara/dsl'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'turnip'
 require 'turnip/capybara'
 
@@ -32,6 +31,15 @@ require 'turnip/capybara'
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
+
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, :js_errors => true, :timeout => 60)
+end
+
+Capybara.configure do |config|
+  config.default_driver = :poltergeist
+  config.javascript_driver = :poltergeist
+end
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -61,9 +69,4 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-end
-
-Capybara.javascript_driver = :poltergeist
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, inspector: true)
 end
