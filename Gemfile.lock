@@ -30,7 +30,7 @@ GEM
     addressable (2.4.0)
     arel (5.0.1.20140414130214)
     ast (2.2.0)
-    autoprefixer-rails (6.3.6)
+    autoprefixer-rails (6.3.6.1)
       execjs
     bcp47 (0.3.3)
       i18n
@@ -59,6 +59,7 @@ GEM
     concurrent-ruby (1.0.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    database_cleaner (1.5.3)
     diff-lcs (1.2.5)
     ebnf (1.0.1)
       rdf (~> 2.0)
@@ -70,7 +71,7 @@ GEM
     erubis (2.7.0)
     execjs (2.6.0)
     ffi (1.9.10)
-    font-awesome-rails (4.6.2.0)
+    font-awesome-rails (4.6.3.0)
       railties (>= 3.2, < 5.1)
     formatador (0.2.5)
     gherkin (2.12.2)
@@ -100,10 +101,6 @@ GEM
     guard-rubocop (1.2.0)
       guard (~> 2.0)
       rubocop (~> 0.20)
-    guard-spring (1.1.1)
-      guard (~> 2.0)
-      guard-compat (~> 1.1)
-      spring
     haml (4.0.7)
       tilt
     haml-rails (0.9.0)
@@ -189,8 +186,8 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0221)
     mini_portile2 (2.0.0)
-    minitest (5.8.4)
-    multi_json (1.12.0)
+    minitest (5.9.0)
+    multi_json (1.12.1)
     nenv (0.3.0)
     net-http-persistent (2.9.4)
     nokogiri (1.6.7.2)
@@ -239,6 +236,7 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    rb-readline (0.5.3)
     rdf (2.0.1)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
@@ -408,13 +406,13 @@ DEPENDENCIES
   bootstrap-sass
   capybara
   coffee-rails (~> 4.0.0)
+  database_cleaner
   erb2haml
   execjs
   font-awesome-rails
   guard-jasmine
   guard-rspec
   guard-rubocop
-  guard-spring
   haml-rails
   jasmine-rails
   jquery-rails
@@ -425,6 +423,7 @@ DEPENDENCIES
   poltergeist
   rack-linkeddata
   rails (= 4.1.7)
+  rb-readline
   rspec-rails
   sass-rails (~> 4.0.5)
   sparql
@@ -439,4 +438,4 @@ DEPENDENCIES
   unicorn
 
 BUNDLED WITH
-   1.11.2
+   1.12.4

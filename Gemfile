@@ -43,7 +43,8 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem "guard-rspec"
   gem "guard-rubocop"
-  gem "guard-spring"
   gem "jasmine-rails"
   gem "guard-jasmine"
+  gem "rb-readline"
+  gem "database_cleaner"
 end
