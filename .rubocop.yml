@@ -114,6 +114,7 @@ Style/AlignHash:
 # SupportedStyles: with_first_parameter, with_fixed_indentation
 Style/AlignParameters:
   Exclude:
+    - 'bin/guard'
     - 'bin/rspec'
 
 # Offense count: 7
