@@ -47,4 +47,5 @@ group :development, :test do
   gem "guard-jasmine"
   gem "rb-readline"
   gem "database_cleaner"
+  gem "growl"
 end
