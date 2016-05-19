@@ -1,8 +1,9 @@
-require 'spec_helper'
+require "spec_helper"
 
-describe 'Home' do
-  specify 'Visit page' do
+describe "Home" do
+  scenario "Visiting the home page" do
     visit root_path
-    expect(page).to have_css('a.navbar-brand', text: 'Open Park')
+    expect(page).to have_content "Open Park"
   end
+
 end
