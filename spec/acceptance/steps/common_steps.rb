@@ -1,5 +1,5 @@
 # encoding: utf-8
-module GenericSteps
+module CommonSteps
   step %(:pageページにアクセスする) do |page|
     visit page
   end
@@ -9,4 +9,4 @@ module GenericSteps
   end
 end
 
-RSpec.configure { |c| c.include GenericSteps }
+RSpec.configure { |c| c.include CommonSteps }
