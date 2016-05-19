@@ -32,11 +32,18 @@ end
 
 group :development do
   gem 'erb2haml'
-  gem 'spring'
-  gem 'shotgun'
 end
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'poltergeist'
+  gem 'turnip'
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem "guard-rspec"
+  gem "guard-rubocop"
+  gem "guard-spring"
+  gem "jasmine-rails"
+  gem "guard-jasmine"
 end

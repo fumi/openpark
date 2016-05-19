@@ -29,6 +29,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (5.0.1.20140414130214)
+    ast (2.2.0)
     autoprefixer-rails (6.3.6)
       execjs
     bcp47 (0.3.3)
@@ -44,6 +45,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    childprocess (0.5.9)
+      ffi (~> 1.0, >= 1.0.11)
+    cliver (0.3.2)
+    coderay (1.1.1)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -64,8 +69,41 @@ GEM
       html2haml
     erubis (2.7.0)
     execjs (2.6.0)
+    ffi (1.9.10)
     font-awesome-rails (4.6.2.0)
       railties (>= 3.2, < 5.1)
+    formatador (0.2.5)
+    gherkin (2.12.2)
+      multi_json (~> 1.3)
+    guard (2.13.0)
+      formatador (>= 0.2.4)
+      listen (>= 2.7, <= 4.0)
+      lumberjack (~> 1.0)
+      nenv (~> 0.1)
+      notiffany (~> 0.0)
+      pry (>= 0.9.12)
+      shellany (~> 0.0)
+      thor (>= 0.18.1)
+    guard-compat (1.2.1)
+    guard-jasmine (2.0.6)
+      childprocess (~> 0.5)
+      guard (~> 2.8)
+      guard-compat (~> 1.2)
+      jasmine (~> 2.2)
+      multi_json (~> 1.1)
+      thor (~> 0.19)
+      tilt
+    guard-rspec (4.6.5)
+      guard (~> 2.1)
+      guard-compat (~> 1.1)
+      rspec (>= 2.99.0, < 4.0)
+    guard-rubocop (1.2.0)
+      guard (~> 2.0)
+      rubocop (~> 0.20)
+    guard-spring (1.1.1)
+      guard (~> 2.0)
+      guard-compat (~> 1.1)
+      spring
     haml (4.0.7)
       tilt
     haml-rails (0.9.0)
@@ -85,6 +123,17 @@ GEM
       ruby_parser (~> 3.5)
     htmlentities (4.3.4)
     i18n (0.7.0)
+    jasmine (2.4.0)
+      jasmine-core (~> 2.4)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
+    jasmine-core (2.4.1)
+    jasmine-rails (0.12.4)
+      jasmine-core (>= 1.3, < 3.0)
+      phantomjs (>= 1.9)
+      railties (>= 3.2.0)
+      sprockets-rails
     jquery-rails (3.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -128,18 +177,41 @@ GEM
       rdf-xsd (~> 2.0)
       sparql (~> 2.0)
       sparql-client (~> 2.0)
+    listen (3.1.5)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
+      ruby_dep (~> 1.2)
+    lumberjack (1.0.10)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    method_source (0.8.2)
     mime-types (3.0)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0221)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.12.0)
+    nenv (0.3.0)
     net-http-persistent (2.9.4)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    notiffany (0.1.0)
+      nenv (~> 0.1)
+      shellany (~> 0.0)
+    parser (2.3.1.0)
+      ast (~> 2.2)
+    phantomjs (2.1.1.0)
+    poltergeist (1.9.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
+    powerpack (0.1.1)
     promise (0.3.1)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rack (1.5.5)
     rack-linkeddata (1.1.0)
       linkeddata (>= 1.1.0)
@@ -161,8 +233,12 @@ GEM
       activesupport (= 4.1.7)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    rainbow (2.1.0)
     raindrops (0.16.0)
     rake (11.1.2)
+    rb-fsevent (0.9.7)
+    rb-inotify (0.9.7)
+      ffi (>= 0.5.0)
     rdf (2.0.1)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
@@ -246,6 +322,14 @@ GEM
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    rubocop (0.40.0)
+      parser (>= 2.3.1.0, < 3.0)
+      powerpack (~> 0.1)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (~> 1.0, >= 1.0.1)
+    ruby-progressbar (1.8.1)
+    ruby_dep (1.3.1)
     ruby_parser (3.8.2)
       sexp_processor (~> 4.1)
     safe_yaml (1.0.4)
@@ -256,8 +340,8 @@ GEM
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
     sexp_processor (4.7.0)
-    shotgun (0.9.1)
-      rack (>= 1.0)
+    shellany (0.0.1)
+    slop (3.6.0)
     sparql (2.0.0)
       builder (~> 3.2)
       ebnf (~> 1.0, >= 1.0.1)
@@ -276,6 +360,8 @@ GEM
       rdf (~> 2.0)
       rdf-isomorphic (~> 2.0)
     spring (1.7.1)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -294,10 +380,14 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    turnip (2.1.0)
+      gherkin (~> 2.5)
+      rspec (>= 3.0, < 4.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+    unicode-display_width (1.0.5)
     unicorn (5.1.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
@@ -305,6 +395,9 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
+    websocket-driver (0.6.3)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -318,23 +411,30 @@ DEPENDENCIES
   erb2haml
   execjs
   font-awesome-rails
+  guard-jasmine
+  guard-rspec
+  guard-rubocop
+  guard-spring
   haml-rails
+  jasmine-rails
   jquery-rails
   knockoutjs-rails
   leaflet-markercluster-rails
   leaflet-rails
   linkeddata
+  poltergeist
   rack-linkeddata
   rails (= 4.1.7)
   rspec-rails
   sass-rails (~> 4.0.5)
-  shotgun
   sparql
   sparql-client
   spira
   spring
+  spring-commands-rspec
   sqlite3
   therubyracer
+  turnip
   uglifier (>= 1.3.0)
   unicorn
 
