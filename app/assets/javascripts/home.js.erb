@@ -80,7 +80,7 @@ $(function(){
     pointToLayer: function (feature, latlng) {
       return L.marker(latlng, {
         icon: L.icon({
-          iconUrl: "<%= asset_path('marker-icon.png') %>",
+          iconUrl: url("<%= asset_path('marker-icon.png') %>"),
           iconSize: [25, 41],
           iconAnchor: [12, 28],
           popupAnchor: [0, -25]
