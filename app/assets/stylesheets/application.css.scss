@@ -1,12 +1,12 @@
-//= depend_on "layers.png"
-//= depend_on "layers-2x.png"
-//= depend_on "marker-icon.png"
-//= depend_on "marker-shadow.png"
-//= depend_on "bootleaf/favicon-76.png"
-//= depend_on "bootleaf/favicon-120.png"
-//= depend_on "bootleaf/favicon-152.png"
-//= depend_on "bootleaf/favicon-196.png"
-//= depend_on "bootleaf/favicon.ico"
+//= depend_on_asset "layers.png"
+//= depend_on_asset "layers-2x.png"
+//= depend_on_asset "marker-icon.png"
+//= depend_on_asset "marker-shadow.png"
+//= depend_on_asset "bootleaf/favicon-76.png"
+//= depend_on_asset "bootleaf/favicon-120.png"
+//= depend_on_asset "bootleaf/favicon-152.png"
+//= depend_on_asset "bootleaf/favicon-196.png"
+//= depend_on_asset "bootleaf/favicon.ico"
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
