@@ -1,0 +1,14 @@
+[Unit]
+Description = Unicorn for Open Park
+
+[Service]
+Type=simple
+Environment=RAILS_ENV=production
+WorkingDirectory=/opt/openpark
+PIDFile=$WorkingDirecotory/tmp/unicorn.pid
+ExecStart=/usr/bin/bundle exec "unicorn_rails -c config/unicorn.rb -E production"
+ExecReload=/bin/kill -s USR2 $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+
+[Install]
+WantedBy=multi-user.target
