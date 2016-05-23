@@ -77,7 +77,7 @@ WHERE {
     ic:名称/ic:表記 ?label ;
     ic:管理者/ic:名称/ic:表記 ?organization_label ;
     ic:設置地点 <#{park_uri}> ;
-    ic:種別 ?subject_label ;
+    park:種別 ?subject_label ;
     park:数量 ?count .
   OPTIONAL {
     ?equipment_uri ic:利用者 ?user .
