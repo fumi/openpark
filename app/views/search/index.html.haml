@@ -2,19 +2,19 @@
   .col-md-12
     .list-group
       - @parks.each do |park|
-        %a.list-group-item{ :href => "#{park[:park].to_s.gsub(/http:\/\/yokohama.openpark.jp/, '')}" }
-          %h3.list-group-item-heading= park[:parkLabel].to_s
+        %a.list-group-item{ :href => "#{park[:park].to_s.gsub(/http:\/\/openpark.jp/, '')}" }
+          %h3.list-group-item-heading= park[:park_label].to_s
           %p.list-group-item-text
-            = park[:address].to_s.gsub(/神奈川県/, '')
+            = park[:address].to_s
             %br
-            - if park[:equipmentLabel]
-              = park[:equipmentLabel]
+            - if park[:equipment_label]
+              = park[:equipment_label]
               対象年齢:
               - if park[:age_max] or park[:age_min]
                 - if park[:age_min]
                   = park[:age_min]
                   歳
-                〜  
+                〜
                 - if park[:age_max]
                   = park[:age_max]
                   歳
