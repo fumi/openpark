@@ -80,7 +80,7 @@ $(function(){
     pointToLayer: function (feature, latlng) {
       return L.marker(latlng, {
         icon: L.icon({
-          iconUrl: '<%= asset_path('marker-icon.png') %>',
+          iconUrl: "<%= asset_path('marker-icon.png') %>",
           iconSize: [25, 41],
           iconAnchor: [12, 28],
           popupAnchor: [0, -25]
@@ -244,7 +244,7 @@ $(function(){
       displayKey: "name",
       source: parksBH.ttAdapter(),
       templates: {
-        header: "<h4 class='typeahead-header'><img src='#{asset_path('marker-icon.png')}' width='24' height='28'>&nbsp;公園</h4>",
+        header: "<h4 class='typeahead-header'><img src='<%= asset_path('marker-icon.png') %>' width='24' height='28'>&nbsp;公園</h4>",
         suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
       }
     }).on("typeahead:selected", function (obj, datum) {
