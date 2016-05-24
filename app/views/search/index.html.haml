@@ -10,13 +10,13 @@
             - if park[:equipment_label]
               = park[:equipment_label]
               対象年齢:
-              - if park[:age_max] or park[:age_min]
-                - if park[:age_min]
-                  = park[:age_min]
+              - if park[:upper_age_limit] or park[:lower_age_limit]
+                - if park[:lower_age_limit]
+                  = park[:lower_age_limit]
                   歳
                 〜
-                - if park[:age_max]
-                  = park[:age_max]
+                - if park[:upper_age_limit]
+                  = park[:upper_age_limit]
                   歳
               - else
                 なし

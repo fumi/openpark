@@ -45,7 +45,7 @@ PREFIX park: <#{PREFIXES[:park]}>
     park_query = prefixes + """
 SELECT DISTINCT ?label ?lat ?long ?description ?address ?postalcode
 WHERE {
-  <#{park_uri}> a ic:施設型 ;
+  <#{park_uri}> a park:公園型 ;
   ic:名称/ic:表記 ?label ;
   ic:住所 [
     ic:表記 ?address;
@@ -73,7 +73,7 @@ LIMIT 1
     equipment_query = prefixes + """
 SELECT DISTINCT *
 WHERE {
-  ?equipment_uri a ic:設備型 ;
+  ?equipment_uri a park:遊具型 ;
     ic:名称/ic:表記 ?label ;
     ic:管理者/ic:名称/ic:表記 ?organization_label ;
     ic:設置地点 <#{park_uri}> ;

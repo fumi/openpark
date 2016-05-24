@@ -14,11 +14,10 @@ PREFIX park: <#{PARK.to_s}>
       equipment_type = params[:equipment_type] || "全て"
       age = params[:age].to_s || "3"
 
-      query = prefixes +
-"""
-SELECT DISTINCT ?park ?park_label ?postal_code ?address ?lat ?long ?equipment ?equipment_label ?age_max ?age_min
+      query = prefixes + """
+SELECT DISTINCT ?park ?park_label ?postal_code ?address ?lat ?long ?equipment ?equipment_label ?upper_age_limit ?lower_age_limit
 WHERE {
-  ?park a ic:施設型 ;
+  ?park a park:公園型 ;
     ic:名称/ic:表記 ?park_label ;
     ic:設備 ?equipment ;
     ic:住所 [
@@ -31,22 +30,24 @@ WHERE {
     ] .
   ?equipment ic:名称/ic:表記 ?equipment_label .
 """
+
       unless  equipment_type.match("全て")
-        query << "  ?equipment park:種別 \"#{equipment_type}\"@ja ."
+        query << "  ?equipment ic:種別 \"#{equipment_type}\"@ja ."
       end
 
-  query << """
+      query << """
   OPTIONAL {
-    ?equipment park:年齢上限 ?age_max .
-    FILTER (?age_max >= #{age})
+    ?equipment park:年齢上限 ?upper_age_limit .
+    FILTER (?upper_age_limit >= #{age})
   }
   OPTIONAL {
-    ?equipment park:年齢下限 ?age_min .
-    FILTER (?age_min <= #{age})
+    ?equipment park:年齢下限 ?lower_age_limit .
+    FILTER (?lower_age_limit <= #{age})
   }
 }
 ORDER BY ?park_label
 """
+      puts query
       @parks = client.query(query)
 
     elsif params[:text] and !params[:text].empty?
@@ -56,7 +57,7 @@ ORDER BY ?park_label
 """
 SELECT DISTINCT ?park ?park_label ?postal_code ?address ?lat ?long
 WHERE {
-  ?park a ic:施設型 ;
+  ?park a park:公園型 ;
     ic:名称/ic:表記 ?park_label ;
     ic:住所 [
       ic:郵便番号 ?postal_code ;
@@ -70,6 +71,7 @@ WHERE {
 }
 ORDER BY ?park_label
 """
+      puts query
       @parks = client.query(query)
     end
   end
