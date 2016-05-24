@@ -16,7 +16,7 @@ class ParksController < ApplicationController
   def all_geojson
     client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
     query = """PREFIX ic: <#{PREFIXES[:ic]}>
-
+PREFIX park: <#{PREFIXES[:park]}>
 SELECT ?park ?label ?lat ?long
 WHERE {
   ?park a park:公園型 ;
