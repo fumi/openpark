@@ -19,7 +19,7 @@ class ParksController < ApplicationController
 
 SELECT ?park ?label ?lat ?long
 WHERE {
-  ?park a ic:施設型 ;
+  ?park a park:公園型 ;
     ic:名称/ic:表記 ?label ;
     ic:地理識別子 [
       ic:経度 ?long ;
