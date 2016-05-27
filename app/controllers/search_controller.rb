@@ -32,7 +32,7 @@ WHERE {
 """
 
       unless  equipment_type.match("全て")
-        query << "  ?equipment ic:種別 \"#{equipment_type}\"@ja ."
+        query << "  ?equipment park:種別 \"#{equipment_type}\"@ja ."
       end
 
       query << """
@@ -71,7 +71,6 @@ WHERE {
 }
 ORDER BY ?park_label
 """
-      puts query
       @parks = client.query(query)
     end
   end
