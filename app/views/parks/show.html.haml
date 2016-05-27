@@ -44,12 +44,12 @@
                     - if equipment[:equipment_spec]
                       %tr
                         %th 仕様・規格
-                        %td= equipment[:user]
+                        %td= equipment[:equipment_spec]
                     %tr
                       %th 管理者
                       %td= equipment[:organization_label]
                     %tr
-                      %th 数量
+                      %th 設置数
                       %td= equipment[:count]
                     - if equipment[:user]
                       %tr
