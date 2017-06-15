@@ -3,7 +3,7 @@
 PARK_RESOURCE = RDF::Vocabulary.new("http://openpark.jp/parks/")
 EQUIPMENT_RESOURCE = RDF::Vocabulary.new("http://openpark.jp/equipment/")
 ORGANIZATION_RESOURCE = RDF::Vocabulary.new("http://openpark.jp/organizations/")
-IC = RDF::Vocabulary.new("http://imi.ipa.go.jp/ns/core/rdf#")
+IC = RDF::Vocabulary.new("http://imi.go.jp/ns/core/rdf#")
 PARK = RDF::Vocabulary.new("http://openpark.jp/ns/park#")
 
 PREFIXES = {
@@ -19,4 +19,3 @@ PREFIXES = {
   :ic => IC.to_s,
   :park => PARK.to_s
 }
-
