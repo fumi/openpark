@@ -1,4 +1,4 @@
-@prefix ic: <http://imi.ipa.go.jp/ns/core/210#> .
+@prefix ic: <http://imi.go.jp/ns/core/rdf#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -13,7 +13,7 @@
   rdfs:label "公園語彙"@ja, "Park Vocabulary"@en ;
   cc:license <http://creativecommons.org/publicdomain/zero/1.0/> ;
   dcterms:creator <http://fumi.me/foaf#me> ;
-  dcterms:created "2016-05-24" ;
+  dcterms:created "2017-06-15" ;
   rdfs:comment "公園語彙は共通語彙基盤 コア語彙を拡張して公園のデータを記述するための語彙です。"@ja ;
   owl:versionInfo "1.0" .
 
