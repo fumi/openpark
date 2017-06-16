@@ -24,7 +24,7 @@ WHERE {
       ic:郵便番号 ?postal_code ;
       ic:表記 ?address
     ] ;
-    ic:地理識別子 [
+    ic:地理座標 [
       ic:経度 ?long ;
       ic:緯度 ?lat
     ] .
@@ -63,7 +63,7 @@ WHERE {
       ic:郵便番号 ?postal_code ;
       ic:表記 ?address
     ] ;
-    ic:地理識別子 [
+    ic:地理座標 [
       ic:経度 ?long ;
       ic:緯度 ?lat
     ] .
