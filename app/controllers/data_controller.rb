@@ -57,7 +57,7 @@ EOQ
     frame = JSON.parse %({
   "@context": [
     "http://imi.go.jp/ns/core/context.jsonld",
-    "http://openpark.jp/ns/context.jsonld"
+    "http://openpark.jp/context/park"
   ],
   "@type": "公園型",
   "住所": {
