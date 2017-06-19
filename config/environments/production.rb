@@ -77,6 +77,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.sparql_endpoint = "http://localhost:8890/sparql"
-  config.hostname = "yokohama.openpark.jp"
+  config.hostname = "openpark.jp"
 
 end
