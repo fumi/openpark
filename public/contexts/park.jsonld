@@ -1,32 +1,35 @@
 {
-  "@context": {
-    "park:": "http://openpark.jp/ns/park#",
-    "xsd:": "http://www.w3.org/2001/XMLSchema#",
-    "公園型": {
-      "@id": "park:公園型"
-    },
-    "遊具型": {
-      "@id": "park:遊具型"
-    },
-    "面積": {
-      "@id": "park:面積",
-      "@type": "@id"
-    },
-    "年齢上限": {
-      "@id": "park:年齢上限",
-      "@type": "xsd:integer"
-    },
-    "年齢下限": {
-      "@id": "park:年齢下限",
-      "@type": "xsd:integer"
-    },
-    "設置数": {
-      "@id": "park:設置数",
-      "@type": "@id"
-    },
-    "仕様規格": {
-      "@id": "park:仕様規格",
-      "@type": "xsd:string"
+  "@context": [
+    "http://imi.go.jp/ns/core/context.jsonld",
+    {
+      "park:": "http://openpark.jp/ns/park#",
+      "xsd:": "http://www.w3.org/2001/XMLSchema#",
+      "公園型": {
+        "@id": "park:公園型"
+      },
+      "遊具型": {
+        "@id": "park:遊具型"
+      },
+      "面積": {
+        "@id": "park:面積",
+        "@type": "@id"
+      },
+      "年齢上限": {
+        "@id": "park:年齢上限",
+        "@type": "xsd:integer"
+      },
+      "年齢下限": {
+        "@id": "park:年齢下限",
+        "@type": "xsd:integer"
+      },
+      "設置数": {
+        "@id": "park:設置数",
+        "@type": "@id"
+      },
+      "仕様規格": {
+        "@id": "park:仕様規格",
+        "@type": "xsd:string"
+      }
     }
-  }
+  ]
 }
