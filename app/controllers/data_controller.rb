@@ -57,10 +57,8 @@ EOQ
   def dump_jsonld(format, uri)
 #    "http://openpark.jp/contexts/park"
     frame = JSON.parse %({
-  "@context": [
-    "http://openpark.jp/contexts/park"
-  ],
-  "@type": "公園型"
+  "@context": "http://openpark.jp/contexts/park",
+  "@type": "公園型",
   "住所": {
     "@type": "住所型"
   },
