@@ -6,34 +6,36 @@ PREFIX ic: <http://imi.go.jp/ns/core/rdf#>
 PREFIX park: <http://openpark.jp/ns/park#>
 CONSTRUCT {
   ?root a park:公園型 ;
-    ic:名称 [ a ic:名称型; ic:表記 ?label ] ;
-    ic:住所 [ a ic:住所型; ic:表記 ?address ] ;
+    ic:名称 ?name ;
+    ic:住所 ?address ;
     ic:郵便番号 ?postalcode ;
-    ic:地理座標 [ a ic:座標型; ic:経度 ?long ; ic:緯度 ?lat ] ;
+    ic:地理座標 ?geometry ;
     ic:説明 ?description ;
     ic:設備 ?equipment ;
-    park:面積 [ a ic:面積型; ic:数値 ?area ]
-  .
+    park:面積 ?area .
+  ?name a ic:名称型; ic:表記 ?name_label .
+  ?address a ic:住所型; ic:表記 ?address_label .
+  ?geometry a ic:座標型; ic:経度 ?long ; ic:緯度 ?lat .
+  ?area  a ic:面積型; ic:数値 ?area_value .
 }
 WHERE {
   VALUES ?root {<%s>}
   ?root a park:公園型 ;
-    ic:名称/ic:表記 ?label ;
-    ic:住所/ic:表記 ?address .
+    ic:名称 ?name ;
+    ic:住所 ?address .
+  ?name ic:表記 ?name_label .
+  ?address ic:表記 ?address_label .
   OPTIONAL { ?root ic:郵便番号 ?postalcode . }
   OPTIONAL {
-    ?root ic:地理座標 [
-      ic:経度 ?long ;
-      ic:緯度 ?lat
-    ] .
+    ?root ic:地理座標 ?geometry .
+    ?geometry ic:経度 ?long ; ic:緯度 ?lat
   }
   OPTIONAL {
     ?root ic:設備 ?equipment .
   }
   OPTIONAL { ?root ic:説明 ?description . }
-  OPTIONAL { ?root park:面積/ic:数値 ?area . }
+  OPTIONAL { ?root park:面積 ?area . ?area ic:数値 ?area_value . }
 }
-LIMIT 1
 EOQ
     super
   end
@@ -62,6 +64,7 @@ EOQ
 })
     client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
     query = @query_template % uri
+    #puts query
     sparql_result = client.query(query)
     input = JSON.parse(sparql_result.dump(:jsonld))
     test = JSON::LD::API.frame(input, frame)
