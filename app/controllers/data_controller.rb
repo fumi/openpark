@@ -16,6 +16,7 @@ CONSTRUCT {
   .
 }
 WHERE {
+  VALUES ?root {<%s>}
   ?root a park:公園型 ;
     ic:名称/ic:表記 ?label ;
     ic:住所/ic:表記 ?address .
@@ -31,7 +32,6 @@ WHERE {
   }
   OPTIONAL { ?root ic:説明 ?description . }
   OPTIONAL { ?root park:面積/ic:数値 ?area . }
-  BIND (<%s> AS ?root)
 }
 LIMIT 1
 EOQ
