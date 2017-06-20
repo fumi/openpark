@@ -47,7 +47,6 @@
           %code
             $ curl 'http://openpark.jp/data/parks/14108/P7005.ttl'
 
-
     .panel.panel-primary
       .panel-heading SPARQL
       .panel-body
@@ -68,17 +67,23 @@
               %th 語彙名
               %th prefix
               %th IRI
+              %th JSON-LD context
           %tbody
             %tr
               %td 共通語彙 コア語彙2.4
               %td ic
               %td
                 %a{ :href => "http://imi.go.jp/ns/core/rdf#"} http://imi.go.jp/ns/core/rdf#
+              %td
+                %a{ :href => "https://imi.go.jp/ns/core/context.jsonld"} https://imi.go.jp/ns/core/context.jsonld
             %tr
               %td 公園語彙 1.0
               %td park
               %td
                 %a{ :href => "http://openpark.jp/ns/park#" }  http://openpark.jp/ns/park#
+              %td
+                %a{ :href => "https://openpark.jp/contexts/park"} https://openpark.jp/contexts/park
+
         %p
           %a{ :href => "/static_data/OpenParkModel.png" }
             %img.img-responsive{ :src => "/static_data/OpenParkModel.png", :alt => "Open Park Model" }
