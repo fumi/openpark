@@ -4,6 +4,22 @@
     {
       "park": "http://openpark.jp/ns/park#",
       "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "説明": {
+        "@id": "ic:説明",
+        "@type": "xsd:string"
+      },
+      "緯度": {
+        "@id": "ic:緯度",
+        "@type": "xsd:string"
+      },
+       "経度": {
+        "@id": "ic:経度",
+        "@type": "xsd:string"
+      },
+      "名称": {
+        "@id": "ic:名称",
+        "@type": "@id"
+      },
       "公園型": {
         "@id": "park:公園型"
       },
