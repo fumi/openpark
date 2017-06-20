@@ -57,29 +57,15 @@ EOQ
   def dump_jsonld(format, uri)
 #    "http://openpark.jp/contexts/park"
     frame = JSON.parse %({
-  "@context": "http://openpark.jp/contexts/park",
-  "@type": "公園型",
-  "住所": {
-    "@type": "住所型"
-  },
-  "地理座標": {
-    "@type": "座標型"
-  },
-  "面積": {
-    "@type": "面積型"
-  }
+  "@context": "https://openpark.jp/contexts/park",
+  "@type": "公園型"
 })
-#  "@type": "公園型"
     client = SPARQL::Client.new(OpenPark::Application.config.sparql_endpoint)
     query = @query_template % uri
-    puts query
     sparql_result = client.query(query)
     input = JSON.parse(sparql_result.dump(:jsonld))
-    puts input
     test = JSON::LD::API.frame(input, frame)
-    puts test
     JSON.pretty_generate(test)
-    #input = sparql_result.dump(format, :standard_prefixes => true, :context => frame)
   end
 
   def dump_rdf(format, uri)
