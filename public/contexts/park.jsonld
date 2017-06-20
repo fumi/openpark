@@ -1,9 +1,9 @@
 {
   "@context": [
-    "http://imi.go.jp/ns/core/context.jsonld",
+    "https://imi.go.jp/ns/core/context.jsonld",
     {
-      "park:": "http://openpark.jp/ns/park#",
-      "xsd:": "http://www.w3.org/2001/XMLSchema#",
+      "park": "http://openpark.jp/ns/park#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
       "公園型": {
         "@id": "park:公園型"
       },
