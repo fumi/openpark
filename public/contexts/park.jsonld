@@ -19,6 +19,10 @@
         "@id": "park:面積",
         "@type": "@id"
       },
+      "利用対象": {
+        "@id": "park:利用対象",
+        "@type": "@id"
+      },
       "年齢上限": {
         "@id": "park:年齢上限",
         "@type": "xsd:integer"
