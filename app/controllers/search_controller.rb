@@ -37,12 +37,12 @@ WHERE {
 
       query << """
   OPTIONAL {
-    ?equipment park:年齢上限 ?upper_age_limit .
-    FILTER (?upper_age_limit >= #{age})
+    ?equipment park:利用対象/ic:制限/ic:上限値 ?upper_age_limit .
+    FILTER (?upper_age_limit <= #{age})
   }
   OPTIONAL {
-    ?equipment park:年齢下限 ?lower_age_limit .
-    FILTER (?lower_age_limit <= #{age})
+    ?equipment park:利用対象/ic:制限/ic:下限値 ?lower_age_limit .
+    FILTER (?lower_age_limit >= #{age})
   }
 }
 ORDER BY ?park_label
