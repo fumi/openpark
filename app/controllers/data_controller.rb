@@ -62,7 +62,7 @@ WHERE {
 EOQ
 
       json_frame = JSON.parse %({
-  "@context": "https://openpark.jp/contexts/park",
+  "@context": "https://openpark.jp/contexts/equipment",
   "@type": "遊具型"
 })
     elsif /organizations/.match(type)
@@ -91,7 +91,7 @@ WHERE {
 }
 EOQ
       json_frame = JSON.parse %({
-  "@context": "https://openpark.jp/contexts/park",
+  "@context": "https://openpark.jp/contexts/organization",
   "@type": "組織型"
 })
     else
