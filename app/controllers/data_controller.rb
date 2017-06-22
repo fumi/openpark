@@ -20,7 +20,7 @@ CONSTRUCT {
     ic:ID ?id ;
     ic:名称 ?name ;
     ic:設置地点 ?place ;
-    ic:管理者 ?organizaiton ;
+    ic:管理者 ?organization ;
     park:種別 ?category ;
     park:仕様規格 ?spec ;
     park:設置数 ?count ;
