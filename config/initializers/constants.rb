@@ -1,5 +1,6 @@
 # Constants variables
 
+PARK_ROOT = "http://openpark.jp"
 PARK_RESOURCE = RDF::Vocabulary.new("http://openpark.jp/parks/")
 EQUIPMENT_RESOURCE = RDF::Vocabulary.new("http://openpark.jp/equipment/")
 ORGANIZATION_RESOURCE = RDF::Vocabulary.new("http://openpark.jp/organizations/")
