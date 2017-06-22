@@ -7,8 +7,14 @@
       "説明": "ic:説明",
       "識別値": "ic:識別値",
       "単位表記": "ic:単位表記",
-      "表記": "ic:表記",
-      "数値": "ic:数値",
+      "表記": {
+        "@id": "ic:表記",
+        "@language": "ja"
+      },
+      "数値": {
+        "@id": "ic:数値",
+        "@type": "xsd:integer"
+      },
       "遊具型": {
         "@id": "park:遊具型"
       },
@@ -22,11 +28,19 @@
       },
       "仕様規格": {
         "@id": "park:仕様規格",
-        "@type": "xsd:string"
+        "@language": "ja"
       },
       "種別": {
         "@id": "park:種別",
-        "@type": "xsd:string"
+        "@language": "ja"
+      },
+      "上限値": {
+        "@id": "ic:上限値",
+        "@type": "xsd:integer"
+      },
+      "下限値": {
+        "@id": "ic:下限値",
+        "@type": "xsd:integer"
       }
     }
   ]
