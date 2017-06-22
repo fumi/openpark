@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   get 'parks/:government_id/:park_id' => 'parks#show'
 
+  get 'equipment/:government_id/:type_id' => 'equipment#show'
+
+  get 'organizations/:government_id/:type_id' => 'organizations#show'
+
   get 'search' => 'search#index'
 
   get 'data/:type/:government_id/:type_id' => 'data#show'
