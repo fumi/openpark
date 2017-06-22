@@ -11,10 +11,12 @@
     .panel.panel-primary
       .panel-heading Linked Data
       .panel-body
-        %p 個々の公園データはLinked Dataとして提供しています．Entity IRIにアクセスすると，指定したメディアタイプか拡張子に合わせて303 See Otherでリダイレクトします．Data IRIはCORSに対応しています。
+        %p 個々の公園データはLinked Dataとして提供しています．各IRIにアクセスすると，指定したメディアタイプか拡張子に合わせて303 See Otherでリダイレクトします．データ用IRIはCORSに対応しています。
         %ul
-          %li Entity IRI: http://openpark.jp/parks/[自治体コード5桁]/[park name]
-          %li Data IRI: http://openpark.jp/data/parks/[自治体コード5桁][park name]
+          %li 公園 IRI: http://openpark.jp/parks/[自治体コード5桁]/[ID]
+          %li 遊具 IRI: http://openpark.jp/equipment/[自治体コード5桁]/[ID]
+          %li 組織 IRI: http://openpark.jp/organizations/[自治体コード5桁]/[ID]
+          %li データ用IRI: https://openpark.jp/[parks|equipment|organizations]/[自治体コード5桁]/[ID].{拡張子}
           %li HTTP Method: GET
 
         %table.table.table-hover
@@ -42,10 +44,14 @@
           %code
             $ curl -LH 'Accept: application/ld+json' 'http://openpark.jp/parks/14108/P7005'
 
-        %h4 例2: Turtleのファイルを拡張子指定して直接取得
+        %h4 例2: Turtleファイルを拡張子指定して取得
         %pre
           %code
-            $ curl 'http://openpark.jp/data/parks/14108/P7005.ttl'
+            $ curl -L 'http://openpark.jp/parks/14108/P7005.ttl'
+        %h4 例3: JSON-LDファイルを直接取得
+        %pre
+          %code
+            $ curl 'https://openpark.jp/data/equipment/14108/314.jsonld'
 
     .panel.panel-primary
       .panel-heading SPARQL
@@ -83,6 +89,10 @@
                 %a{ :href => "http://openpark.jp/ns/park#" }  http://openpark.jp/ns/park#
               %td
                 %a{ :href => "https://openpark.jp/contexts/park"} https://openpark.jp/contexts/park
+                %br
+                %a{ :href => "https://openpark.jp/contexts/equipment"} https://openpark.jp/contexts/equipment
+                %br
+                %a{ :href => "https://openpark.jp/contexts/organization"} https://openpark.jp/contexts/organization
 
         %p
           %a{ :href => "/static_data/OpenParkModel.png" }
