@@ -16,42 +16,13 @@
       "都道府県": "ic:都道府県",
       "市区町村": "ic:市区町村",
       "区": "ic:区",
-      "連絡先": "ic:連絡先",
-      "電話番号": "ic:電話番号",
       "sameAs": "owl:sameAs",
       "公園型": {
         "@id": "park:公園型"
       },
-      "遊具型": {
-        "@id": "park:遊具型"
-      },
       "面積": {
         "@id": "park:面積",
         "@type": "@id"
-      },
-      "利用対象": {
-        "@id": "park:利用対象",
-        "@type": "@id"
-      },
-      "年齢上限": {
-        "@id": "park:年齢上限",
-        "@type": "xsd:integer"
-      },
-      "年齢下限": {
-        "@id": "park:年齢下限",
-        "@type": "xsd:integer"
-      },
-      "設置数": {
-        "@id": "park:設置数",
-        "@type": "@id"
-      },
-      "仕様規格": {
-        "@id": "park:仕様規格",
-        "@type": "xsd:string"
-      },
-      "種別": {
-        "@id": "park:種別",
-        "@type": "xsd:string"
       },
       "flickrID": {
         "@id": "park:flickrID",

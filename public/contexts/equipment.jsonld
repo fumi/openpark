@@ -1,0 +1,31 @@
+{
+  "@context": [
+    "https://imi.go.jp/ns/core/context.jsonld",
+    {
+      "park": "http://openpark.jp/ns/park#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "説明": "ic:説明",
+      "識別値": "ic:識別値",
+      "表記": "ic:表記",
+      "遊具型": {
+        "@id": "park:遊具型"
+      },
+      "利用対象": {
+        "@id": "park:利用対象",
+        "@type": "@id"
+      },
+      "設置数": {
+        "@id": "park:設置数",
+        "@type": "@id"
+      },
+      "仕様規格": {
+        "@id": "park:仕様規格",
+        "@type": "xsd:string"
+      },
+      "種別": {
+        "@id": "park:種別",
+        "@type": "xsd:string"
+      },
+    }
+  ]
+}
