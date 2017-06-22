@@ -5,18 +5,42 @@
       "park": "http://openpark.jp/ns/park#",
       "xsd": "http://www.w3.org/2001/XMLSchema#",
       "owl": "http://www.w3.org/2002/07/owl#",
-      "説明": "ic:説明",
+      "説明": {
+        "@id": "ic:説明",
+        "@language": "ja"
+      },
       "識別値": "ic:識別値",
       "緯度": "ic:緯度",
       "経度": "ic:経度",
-      "表記": "ic:表記",
-      "数値": "ic:数値",
-      "種別": "ic:種別",
+      "表記": {
+        "@id": "ic:表記",
+        "@language": "ja"
+      },
+      "数値": {
+        "@id": "ic:数値",
+        "@type": "xsd:integer"
+      },
+      "種別": {
+        "@id": "ic:種別",
+        "@language": "ja"
+      },
       "郵便番号": "ic:郵便番号",
-      "都道府県": "ic:都道府県",
-      "市区町村": "ic:市区町村",
-      "区": "ic:区",
-      "sameAs": "owl:sameAs",
+      "都道府県": {
+        "@id": "ic:都道府県",
+        "@language": "ja"
+      },
+      "市区町村": {
+        "@id": "ic:市区町村",
+        "@language": "ja"
+      },
+      "区": {
+        "@id": "ic:区",
+        "@language": "ja"
+      },
+      "sameAs": {
+        "@id": "owl:sameAs",
+        "@type": "@id"
+      },
       "公園型": {
         "@id": "park:公園型"
       },
