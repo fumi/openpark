@@ -73,7 +73,7 @@ CONSTRUCT {
     ic:ID ?id ;
     ic:名称 ?name ;
     ic:連絡先 ?contact .
-  ?id a ic:ID型; ic:ID ?id_value .
+  ?id a ic:ID型; ic:識別値 ?id_value .
   ?name a ic:名称型; ic:表記 ?name_value .
   ?contact a ic:連絡先型; ic:電話番号 ?phone .
 }

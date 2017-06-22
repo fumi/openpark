@@ -5,7 +5,7 @@
       "park": "http://openpark.jp/ns/park#",
       "xsd": "http://www.w3.org/2001/XMLSchema#",
       "owl": "http://www.w3.org/2002/07/owl#",
-      "説明": "ic:説明",
+      "表記": "ic:表記",
       "識別値": "ic:識別値",
       "電話番号": "ic:電話番号"
     }
