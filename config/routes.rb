@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get 'search' => 'search#index'
 
-  get 'data/parks/:government_id/:park_id' => 'data#show_park'
+  get 'data/:type/:government_id/:type_id' => 'data#show'
 
   get 'api' => 'api#index'
 
