@@ -88,10 +88,10 @@ WHERE {
     ?equipment_uri park:仕様規格 ?equipment_spec .
   }
   OPTIONAL {
-    ?equipment_uri park:利用対象/ic:制限/park:上限値 ?upper_age_limit .
+    ?equipment_uri park:利用対象/ic:制約/park:上限値 ?upper_age_limit .
   }
   OPTIONAL {
-    ?equipment_uri park:利用対象/ic:制限/park:下限値 ?lower_age_limit .
+    ?equipment_uri park:利用対象/ic:制約/park:下限値 ?lower_age_limit .
   }
 }
 """
