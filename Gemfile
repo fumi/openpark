@@ -14,7 +14,7 @@ gem 'jquery-rails'
 
 # Leaflet
 gem 'leaflet-rails'
-gem 'leaflet-markercluster-rails'
+gem 'leaflet-markercluster-rails', :git => 'https://github.com/Mapotempo/leaflet-markercluster-rails.git'
 
 # Linked Data & RDF
 gem 'linkeddata'

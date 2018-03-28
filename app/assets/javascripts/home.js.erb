@@ -67,7 +67,7 @@ $(function(){
   var highlight = L.geoJson(null);
 
   /* Single marker cluster layer to hold all clusters */
-  var markerClusters = new L.MarkerClusterGroup({
+  var markerClusters = L.markerClusterGroup({
     spiderfyOnMaxZoom: true,
     showCoverageOnHover: false,
     zoomToBoundsOnClick: true,
