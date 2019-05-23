@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.7.1'
-gem 'sqlite3'
+gem 'rails', github: 'rails/rails', branch: '4-2-stable'
+gem 'sqlite3', '~> 1.3.6'
 gem 'sass-rails', '~> 4.0.5'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
